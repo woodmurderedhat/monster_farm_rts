@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "core_swarm"
+display_name = "Swarm Core"
+description = "A collective entity that operates as many-as-one."
+rarity = 3
+tags = ["insect", "swarm", "hive"]
+incompatible_tags = ["solo"]
+stat_modifiers = {"attack": -10, "defense": -15, "multi_hit": 3}
+ai_modifiers = {"coordination": 0.9}
+visual_modifiers = {"base_sprite": "swarm"}
+body_type = 3
+movement_type = 1
+base_size = 0.5
+base_mass = 0.3
+base_health = 60
+base_stamina = 150
+base_speed = 90.0
+allowed_elements = ["bio", "void", "electric"]
+ability_slots = 2
+mutation_capacity = 4
+

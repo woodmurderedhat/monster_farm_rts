@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "core_wolf"
+display_name = "Wolf Core"
+description = "A swift quadruped predator core with balanced stats."
+rarity = 1
+tags = ["predator", "pack", "mammal"]
+incompatible_tags = []
+stat_modifiers = {"attack": 10, "speed": 15}
+ai_modifiers = {"pack_bonus": 0.2}
+visual_modifiers = {"base_sprite": "wolf"}
+body_type = 0
+movement_type = 0
+base_size = 1.0
+base_mass = 1.2
+base_health = 120
+base_stamina = 100
+base_speed = 130.0
+allowed_elements = ["fire", "ice", "shadow"]
+ability_slots = 3
+mutation_capacity = 2
+

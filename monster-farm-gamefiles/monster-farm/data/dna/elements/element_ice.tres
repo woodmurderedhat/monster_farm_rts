@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DNAElementResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_element_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "element_ice"
+display_name = "Ice Element"
+description = "Grants ice damage and freeze effects."
+rarity = 0
+tags = ["ice", "cold"]
+incompatible_tags = ["fire", "hot"]
+stat_modifiers = {"ice_damage": 15}
+ai_modifiers = {}
+visual_modifiers = {"color_tint": "#88CCFF", "particle_effect": "frost"}
+element_type = "ice"
+damage_bonus = 0.15
+resistance_bonus = 0.2
+status_effects = []
+environmental_interactions = {"water": "freeze", "fire": "extinguish"}
+

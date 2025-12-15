@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mutation_gigantism"
+display_name = "Gigantism"
+description = "The monster grows to enormous size, gaining health but losing speed."
+rarity = 2
+tags = ["size", "giant"]
+incompatible_tags = ["tiny"]
+stat_modifiers = {"health": 50, "speed": -20, "attack": 15}
+ai_modifiers = {}
+visual_modifiers = {}
+mutation_type = 0
+instability_value = 0.2
+override_rules = {}
+forced_visuals = {"scale_modifier": 1.5}
+can_cause_feral = false
+inheritance_chance = 0.3
+

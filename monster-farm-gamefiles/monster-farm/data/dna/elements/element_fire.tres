@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DNAElementResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_element_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "element_fire"
+display_name = "Fire Element"
+description = "Grants fire damage and burn effects."
+rarity = 0
+tags = ["fire", "hot"]
+incompatible_tags = ["ice", "cold"]
+stat_modifiers = {"fire_damage": 15}
+ai_modifiers = {}
+visual_modifiers = {"color_tint": "#FF6600", "particle_effect": "flames"}
+element_type = "fire"
+damage_bonus = 0.2
+resistance_bonus = 0.15
+status_effects = []
+environmental_interactions = {"grass": "ignite", "ice": "melt"}
+

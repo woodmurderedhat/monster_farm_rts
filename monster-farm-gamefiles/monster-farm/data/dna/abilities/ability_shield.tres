@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DNAAbilityResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_ability_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ability_shield"
+display_name = "Shield"
+description = "Creates a protective barrier, reducing incoming damage."
+rarity = 1
+tags = ["defensive", "buff"]
+incompatible_tags = []
+stat_modifiers = {}
+ai_modifiers = {}
+visual_modifiers = {}
+ability_id = "shield"
+cooldown = 8.0
+energy_cost = 30.0
+ability_range = 0.0
+targeting_type = 0
+scaling_stats = ["defense"]
+required_tags = []
+base_power = 40.0
+aoe_radius = 0.0
+

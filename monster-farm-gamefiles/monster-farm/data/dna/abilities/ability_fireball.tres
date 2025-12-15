@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DNAAbilityResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_ability_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ability_fireball"
+display_name = "Fireball"
+description = "Launches a fireball that explodes on impact."
+rarity = 1
+tags = ["ranged", "fire", "magic"]
+incompatible_tags = []
+stat_modifiers = {}
+ai_modifiers = {}
+visual_modifiers = {}
+ability_id = "fireball"
+cooldown = 3.0
+energy_cost = 20.0
+ability_range = 200.0
+targeting_type = 2
+scaling_stats = ["attack", "fire_damage"]
+required_tags = ["fire"]
+base_power = 25.0
+aoe_radius = 50.0
+

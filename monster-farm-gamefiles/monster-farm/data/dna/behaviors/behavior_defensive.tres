@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DNABehaviorResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_behavior_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "behavior_defensive"
+display_name = "Defensive"
+description = "Protects allies and holds the line. Prioritizes survival."
+rarity = 0
+tags = ["defensive", "protector"]
+incompatible_tags = ["aggressive"]
+stat_modifiers = {"defense": 15, "attack": -5}
+ai_modifiers = {"target_priority": "threatening"}
+visual_modifiers = {}
+aggression = 0.2
+loyalty = 0.8
+curiosity = 0.2
+stress_tolerance = 0.7
+work_affinity = {"guarding": 1.5, "farming": 0.8, "combat": 1.0}
+combat_roles = ["tank", "support"]
+

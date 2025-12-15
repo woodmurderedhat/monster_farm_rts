@@ -1,0 +1,92 @@
+# GameState - Global game state manager
+# Autoload singleton for managing game state and transitions
+extends Node
+
+## Game state enum
+enum State {
+	MAIN_MENU,
+	WORLD_EXPLORATION,
+	FARM_SIMULATION,
+	RAID_DEFENSE,
+	PAUSED
+}
+
+## Current game state
+var current_state: State = State.MAIN_MENU
+
+## Previous state (for unpausing)
+var previous_state: State = State.MAIN_MENU
+
+## Whether game is paused
+var is_paused: bool = false
+
+## Current farm data
+var current_farm: Dictionary = {}
+
+## Player's monster collection
+var owned_monsters: Array[Resource] = []
+
+## Collected DNA stacks
+var dna_collection: Array[Resource] = []
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+## Change game state
+func change_state(new_state: State) -> void:
+	if new_state == current_state:
+		return
+	
+	previous_state = current_state
+	current_state = new_state
+	
+	EventBus.game_state_changed.emit(_state_to_string(new_state))
+
+
+## Toggle pause
+func toggle_pause() -> void:
+	set_paused(not is_paused)
+
+
+## Set pause state
+func set_paused(paused: bool) -> void:
+	if paused == is_paused:
+		return
+	
+	is_paused = paused
+	get_tree().paused = paused
+	EventBus.pause_state_changed.emit(is_paused)
+
+
+## Check if in combat state
+func is_in_combat() -> bool:
+	return current_state == State.WORLD_EXPLORATION or current_state == State.RAID_DEFENSE
+
+
+## Check if in farm state
+func is_in_farm() -> bool:
+	return current_state == State.FARM_SIMULATION
+
+
+## Add a monster to collection
+func add_monster(dna_stack: Resource) -> void:
+	owned_monsters.append(dna_stack)
+
+
+## Add DNA to collection
+func add_dna(dna: Resource) -> void:
+	dna_collection.append(dna)
+
+
+## Get state as string
+func _state_to_string(state: State) -> String:
+	match state:
+		State.MAIN_MENU: return "main_menu"
+		State.WORLD_EXPLORATION: return "world"
+		State.FARM_SIMULATION: return "farm"
+		State.RAID_DEFENSE: return "raid"
+		State.PAUSED: return "paused"
+		_: return "unknown"
+

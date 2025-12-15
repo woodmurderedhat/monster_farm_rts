@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mutation_unstable"
+display_name = "Unstable DNA"
+description = "The monster's DNA is unstable, causing unpredictable stat variations."
+rarity = 2
+tags = ["unstable", "chaotic"]
+incompatible_tags = ["stable"]
+stat_modifiers = {}
+ai_modifiers = {"unpredictability": 0.5}
+visual_modifiers = {}
+mutation_type = 2
+instability_value = 0.4
+override_rules = {"allow_conflicting_elements": true}
+forced_visuals = {"particle_effect": "glitch", "color_shift": true}
+can_cause_feral = true
+inheritance_chance = 0.5
+

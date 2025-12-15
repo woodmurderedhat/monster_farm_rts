@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "core_serpent"
+display_name = "Serpent Core"
+description = "A flexible serpentine core excelling at evasion and poison."
+rarity = 2
+tags = ["reptile", "venomous", "agile"]
+incompatible_tags = []
+stat_modifiers = {"evasion": 20, "speed": 10}
+ai_modifiers = {"ambush_preference": 0.7}
+visual_modifiers = {"base_sprite": "serpent"}
+body_type = 2
+movement_type = 0
+base_size = 0.8
+base_mass = 0.7
+base_health = 90
+base_stamina = 120
+base_speed = 110.0
+allowed_elements = ["bio", "water", "shadow"]
+ability_slots = 4
+mutation_capacity = 3
+

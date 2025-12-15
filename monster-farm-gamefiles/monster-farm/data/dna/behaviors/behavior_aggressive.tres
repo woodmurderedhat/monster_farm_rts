@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DNABehaviorResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_behavior_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "behavior_aggressive"
+display_name = "Aggressive"
+description = "Fights first, asks questions never. High damage but low defense priority."
+rarity = 0
+tags = ["aggressive", "berserker"]
+incompatible_tags = ["pacifist"]
+stat_modifiers = {"attack": 10, "defense": -5}
+ai_modifiers = {"target_priority": "weakest"}
+visual_modifiers = {}
+aggression = 0.9
+loyalty = 0.4
+curiosity = 0.3
+stress_tolerance = 0.3
+work_affinity = {"combat": 1.5, "farming": 0.5, "mining": 1.0}
+combat_roles = ["dps", "tank"]
+

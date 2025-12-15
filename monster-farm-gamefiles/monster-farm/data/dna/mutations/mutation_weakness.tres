@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mutation_weakness"
+display_name = "Genetic Weakness"
+description = "A flaw in the DNA that reduces overall stats."
+rarity = 0
+tags = ["weak", "flawed"]
+incompatible_tags = []
+stat_modifiers = {"health": -15, "attack": -10, "defense": -10}
+ai_modifiers = {}
+visual_modifiers = {}
+mutation_type = 1
+instability_value = 0.1
+override_rules = {}
+forced_visuals = {"color_desaturation": 0.3}
+can_cause_feral = false
+inheritance_chance = 0.7
+

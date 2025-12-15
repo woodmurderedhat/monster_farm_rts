@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DNAElementResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_element_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "element_shadow"
+display_name = "Shadow Element"
+description = "Grants stealth and dark damage abilities."
+rarity = 2
+tags = ["shadow", "dark", "stealth"]
+incompatible_tags = ["light"]
+stat_modifiers = {"shadow_damage": 15, "evasion": 10}
+ai_modifiers = {"stealth_preference": 0.6}
+visual_modifiers = {"color_tint": "#442266", "particle_effect": "shadows"}
+element_type = "shadow"
+damage_bonus = 0.15
+resistance_bonus = 0.15
+status_effects = []
+environmental_interactions = {"light": "weaken", "darkness": "empower"}
+

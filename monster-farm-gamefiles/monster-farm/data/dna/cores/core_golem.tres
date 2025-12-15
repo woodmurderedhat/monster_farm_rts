@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "core_golem"
+display_name = "Golem Core"
+description = "A heavy biped core focused on defense and raw power."
+rarity = 2
+tags = ["construct", "heavy", "earth"]
+incompatible_tags = ["flying"]
+stat_modifiers = {"defense": 25, "attack": 15}
+ai_modifiers = {"aggression_base": 0.3}
+visual_modifiers = {"base_sprite": "golem"}
+body_type = 1
+movement_type = 0
+base_size = 1.5
+base_mass = 3.0
+base_health = 200
+base_stamina = 80
+base_speed = 60.0
+allowed_elements = ["earth", "fire", "electric"]
+ability_slots = 2
+mutation_capacity = 1
+

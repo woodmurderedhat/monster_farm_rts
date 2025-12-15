@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DNABehaviorResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_behavior_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "behavior_cunning"
+display_name = "Cunning"
+description = "Smart and evasive. Prefers hit-and-run tactics."
+rarity = 1
+tags = ["cunning", "smart", "tactical"]
+incompatible_tags = ["berserker"]
+stat_modifiers = {"evasion": 10, "crit_chance": 5}
+ai_modifiers = {"target_priority": "vulnerable", "retreat_threshold": 0.4}
+visual_modifiers = {}
+aggression = 0.5
+loyalty = 0.5
+curiosity = 0.8
+stress_tolerance = 0.5
+work_affinity = {"scouting": 1.5, "gathering": 1.2, "farming": 0.7}
+combat_roles = ["dps", "scout"]
+

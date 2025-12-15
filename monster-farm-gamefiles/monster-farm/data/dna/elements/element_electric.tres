@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DNAElementResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_element_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "element_electric"
+display_name = "Electric Element"
+description = "Grants lightning damage and stun effects."
+rarity = 1
+tags = ["electric", "energy"]
+incompatible_tags = ["earth"]
+stat_modifiers = {"electric_damage": 20, "speed": 5}
+ai_modifiers = {}
+visual_modifiers = {"color_tint": "#FFFF44", "particle_effect": "sparks"}
+element_type = "electric"
+damage_bonus = 0.25
+resistance_bonus = 0.1
+status_effects = []
+environmental_interactions = {"water": "electrify", "metal": "conduct"}
+
