@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DNACoreResource"]
+resource_name = "drake_core"
+
+id = "core_drake"
+display_name = "Drake"
+tags = PackedStringArray("reptile", "flying", "dps")
+size_modifier = 0.9
+base_stats = {
+	"max_health": 70,
+	"attack": 16,
+	"defense": 7,
+	"speed": 12,
+	"intelligence": 10
+}
+stat_modifiers = {}
+ai_modifiers = {
+	"aggression_level": 0.9,
+	"courage": 0.8,
+	"pack_affinity": 0.4
+}
+work_affinity = {
+	"hunting": 0.85,
+	"patrol": 0.8,
+	"training": 0.6
+}
+visual_modifiers = {
+	"body_color": Color.WEB_GREEN,
+	"size": 0.9
+}

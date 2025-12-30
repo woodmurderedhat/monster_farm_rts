@@ -145,7 +145,9 @@ func _build_stack() -> MonsterDNAStack:
 	
 	var element_idx := element_slot.selected - 1
 	if element_idx >= 0 and element_idx < available_elements.size():
-		stack.element = available_elements[element_idx]
+		# MonsterDNAStack defines `elements` (plural), not `element`.
+		# Append the selected element resource to the stack's elements array.
+		stack.elements.append(available_elements[element_idx])
 	
 	var behavior_idx := behavior_slot.selected - 1
 	if behavior_idx >= 0 and behavior_idx < available_behaviors.size():

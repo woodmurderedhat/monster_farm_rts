@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "raid_dragon_awakens"
+
+id = "raid_dragon_awakens"
+display_name = "The Dragon Awakens"
+description = "Face the legendary Dragon in combat"
+difficulty = 4
+wave_count = 1
+enemy_pool = ["core_drake"]
+boss_id = "core_drake"
+reward_gold = 5000
+reward_xp = 2500
+is_boss_raid = true

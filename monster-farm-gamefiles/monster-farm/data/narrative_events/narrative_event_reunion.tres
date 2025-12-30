@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_reunion"
+
+id = "narrative_event_reunion"
+display_name = "Lost and Found"
+description = "You discover a long-lost companion"
+chapter = 2
+priority = 5
+dialog = "Against all odds, you find your old friend alive and well..."
+reward_type = "story"

@@ -66,12 +66,9 @@ func assemble_monster(dna_stack: MonsterDNAStack, context: SpawnContext = SpawnC
 ## Load the base monster scene
 func _load_base_scene() -> Node2D:
 	if not ResourceLoader.exists(MONSTER_BASE_SCENE):
-		push_warning("MonsterAssembler: Base scene not found at " + MONSTER_BASE_SCENE)
-		# Create a placeholder for development
-		var placeholder := CharacterBody2D.new()
-		placeholder.name = "Monster"
-		return placeholder
-	
+		push_error("MonsterAssembler: Base scene not found at %s — cannot assemble monster." % MONSTER_BASE_SCENE)
+		return null
+
 	var scene := load(MONSTER_BASE_SCENE) as PackedScene
 	return scene.instantiate() as Node2D
 
@@ -135,26 +132,51 @@ func _apply_stats(monster: Node2D, stat_block: Dictionary) -> void:
 
 
 ## Configure AI based on DNA behavior
-func _configure_ai(monster: Node2D, dna_stack: MonsterDNAStack, context: SpawnContext) -> void:
-	if dna_stack.behavior == null:
-		return
-	
-	var ai_config: Dictionary = {
-		"aggression": dna_stack.behavior.aggression,
-		"loyalty": dna_stack.behavior.loyalty,
-		"curiosity": dna_stack.behavior.curiosity,
-		"stress_tolerance": dna_stack.behavior.stress_tolerance,
-		"combat_roles": dna_stack.behavior.combat_roles.duplicate(),
-		"work_affinity": dna_stack.behavior.work_affinity.duplicate()
-	}
-	
-	# Apply AI modifiers from DNA
+func _configure_ai(monster: Node2D, dna_stack: MonsterDNAStack, _context: SpawnContext) -> void:
+	# Build base ai_config from behavior if present, otherwise defaults
+	var ai_config: Dictionary = {}
+	if dna_stack.behavior:
+		ai_config = {
+			"aggression": dna_stack.behavior.aggression,
+			"loyalty": dna_stack.behavior.loyalty,
+			"curiosity": dna_stack.behavior.curiosity,
+			"stress_tolerance": dna_stack.behavior.stress_tolerance,
+			"combat_roles": dna_stack.behavior.combat_roles.duplicate(),
+			"work_affinity": dna_stack.behavior.work_affinity.duplicate()
+		}
+	else:
+		ai_config = {
+			"aggression": 0.5,
+			"loyalty": 0.5,
+			"curiosity": 0.5,
+			"stress_tolerance": 0.5,
+			"combat_roles": [],
+			"work_affinity": {}
+		}
+
+	# Helper to merge ai_modifiers from a DNA part
+	var _merge_ai_mods_from = func(part) -> void:
+		if part and part is BaseDNAResource:
+			for key in part.ai_modifiers:
+				ai_config[key] = part.ai_modifiers[key]
+
+	# Merge AI modifiers from core, elements, abilities, behavior and mutations
+	_merge_ai_mods_from.call(dna_stack.core)
+	for element in dna_stack.elements:
+		_merge_ai_mods_from.call(element)
+	_merge_ai_mods_from.call(dna_stack.behavior)
+	for ability in dna_stack.abilities:
+		_merge_ai_mods_from.call(ability)
 	for mutation in dna_stack.mutations:
-		if mutation:
-			for key in mutation.ai_modifiers:
-				ai_config[key] = mutation.ai_modifiers[key]
-	
+		_merge_ai_mods_from.call(mutation)
+
+	# Store on monster meta for backward compatibility
 	monster.set_meta("ai_config", ai_config)
+
+	# If monster has an AI controller node, push the config to it
+	var ai_controller := monster.get_node_or_null("AIController")
+	if ai_controller and ai_controller.has_method("configure_ai"):
+		ai_controller.call("configure_ai", ai_config)
 
 
 ## Assign abilities from DNA to the monster
@@ -193,14 +215,25 @@ func _apply_visuals(monster: Node2D, dna_stack: MonsterDNAStack) -> void:
 		visual_data["base_size"] = dna_stack.core.base_size
 		visual_data.merge(dna_stack.core.visual_modifiers, true)
 
+	# Collect element names for overlay system
+	var element_names: Array[String] = []
 	for element in dna_stack.elements:
 		if element:
+			element_names.append(element.id)
 			visual_data.merge(element.visual_modifiers, true)
+	
+	if not element_names.is_empty():
+		visual_data["elements"] = element_names
 
-	# Mutations can force visual changes
+	# Collect mutation names for visual modifiers
+	var mutation_names: Array[String] = []
 	for mutation in dna_stack.mutations:
 		if mutation:
+			mutation_names.append(mutation.id)
 			visual_data.merge(mutation.forced_visuals, true)
+	
+	if not mutation_names.is_empty():
+		visual_data["mutations"] = mutation_names
 
 	monster.set_meta("visual_data", visual_data)
 

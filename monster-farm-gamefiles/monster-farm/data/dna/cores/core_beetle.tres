@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DNACoreResource"]
+resource_name = "beetle_core"
+
+id = "core_beetle"
+display_name = "Beetle"
+tags = PackedStringArray("insect", "armored", "tank")
+size_modifier = 0.8
+base_stats = {
+	"max_health": 90,
+	"attack": 10,
+	"defense": 14,
+	"speed": 6,
+	"intelligence": 2
+}
+stat_modifiers = {}
+ai_modifiers = {
+	"aggression_level": 0.6,
+	"courage": 0.9,
+	"pack_affinity": 0.7
+}
+work_affinity = {
+	"construction": 0.8,
+	"defense": 0.85,
+	"farming": 0.9
+}
+visual_modifiers = {
+	"body_color": Color.WEB_BLACK,
+	"size": 0.8
+}

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "world_event_migration"
+
+id = "world_event_migration"
+display_name = "Monster Migration"
+description = "Wild creatures move through the region"
+duration_days = 3
+impact = "mixed"
+affected_stats = {}
+phases = ["beginning", "peak", "end"]
+special_encounter = true

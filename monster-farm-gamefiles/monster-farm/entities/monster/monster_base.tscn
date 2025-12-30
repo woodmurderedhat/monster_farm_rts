@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx2vjq8qx5kfh"]
+[gd_scene load_steps=13 format=3 uid="uid://bx2vjq8qx5kfh"]
 
 [ext_resource type="Script" path="res://entities/monster/monster_base.gd" id="1"]
 [ext_resource type="Script" path="res://entities/monster/components/health_component.gd" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://systems/combat/combat_ai_component.gd" id="9"]
 [ext_resource type="Script" path="res://entities/monster/components/needs_component.gd" id="10"]
 [ext_resource type="Script" path="res://systems/farm/farm_ai_component.gd" id="11"]
+[ext_resource type="Script" path="res://entities/monster/components/visual_component.gd" id="12"]
 
 [node name="Monster" type="CharacterBody2D"]
 collision_layer = 2
@@ -54,6 +55,9 @@ script = ExtResource("10")
 
 [node name="FarmAIComponent" type="Node" parent="."]
 script = ExtResource("11")
+
+[node name="VisualComponent" type="Node2D" parent="."]
+script = ExtResource("12")
 
 [node name="SelectionIndicator" type="Sprite2D" parent="."]
 visible = false

@@ -59,18 +59,39 @@ static func _validate_slot_limits(stack: MonsterDNAStack) -> Array[ValidationRes
 	
 	if stack.core == null:
 		return results
-	
+	# Default limits from core
+	var max_ability_slots := stack.core.ability_slots
+	var max_mutation_capacity := stack.core.mutation_capacity
+	var max_elements := 99
+
+	# Apply mutation override_rules if present (take the highest allowed)
+	for mutation in stack.mutations:
+		if mutation and mutation.override_rules:
+			if mutation.override_rules.has("ability_slots"):
+				max_ability_slots = int(mutation.override_rules["ability_slots"])
+			if mutation.override_rules.has("mutation_capacity"):
+				max_mutation_capacity = int(mutation.override_rules["mutation_capacity"])
+			if mutation.override_rules.has("max_elements"):
+				max_elements = int(mutation.override_rules["max_elements"])
+
 	# Check ability slots
-	if stack.abilities.size() > stack.core.ability_slots:
+	if stack.abilities.size() > max_ability_slots:
 		results.append(ValidationResult.error(
-			"Too many abilities: %d (max: %d)" % [stack.abilities.size(), stack.core.ability_slots],
+			"Too many abilities: %d (max: %d)" % [stack.abilities.size(), max_ability_slots],
 			stack.core.id
 		))
-	
+
 	# Check mutation capacity
-	if stack.mutations.size() > stack.core.mutation_capacity:
+	if stack.mutations.size() > max_mutation_capacity:
 		results.append(ValidationResult.error(
-			"Too many mutations: %d (max: %d)" % [stack.mutations.size(), stack.core.mutation_capacity],
+			"Too many mutations: %d (max: %d)" % [stack.mutations.size(), max_mutation_capacity],
+			stack.core.id
+		))
+
+	# Check element count against overrides / limits
+	if stack.elements.size() > max_elements:
+		results.append(ValidationResult.error(
+			"Too many elements: %d (max: %d)" % [stack.elements.size(), max_elements],
 			stack.core.id
 		))
 	
@@ -118,6 +139,7 @@ static func _validate_element_compatibility(stack: MonsterDNAStack) -> Array[Val
 	if stack.core == null:
 		return results
 	
+	var seen_types := {}
 	for element in stack.elements:
 		if element == null:
 			continue
@@ -126,6 +148,15 @@ static func _validate_element_compatibility(stack: MonsterDNAStack) -> Array[Val
 				"Element '%s' not allowed by this core" % element.element_type,
 				element.id
 			))
+		# Detect duplicate element types
+		var et := element.element_type
+		if et in seen_types:
+			results.append(ValidationResult.warning(
+				"Duplicate element type '%s' detected" % et,
+				element.id
+			))
+		else:
+			seen_types[et] = true
 	
 	return results
 

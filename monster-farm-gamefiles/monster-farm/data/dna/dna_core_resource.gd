@@ -39,11 +39,11 @@ var movement_type: int = 0
 ## Get body type as string
 func get_body_type_name() -> String:
 	match body_type:
-		0: return "Quadruped"
-		1: return "Biped"
-		2: return "Serpentine"
-		3: return "Swarm"
-		_: return "Unknown"
+		0: return "quadruped"
+		1: return "biped"
+		2: return "serpentine"
+		3: return "swarm"
+		_: return "unknown"
 
 
 ## Get movement type as string

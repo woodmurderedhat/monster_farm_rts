@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DNAAbilityResource"]
+resource_name = "ability_zap"
+
+id = "ability_zap"
+display_name = "Zap"
+description = "Send a bolt of electricity to target"
+cooldown = 3.0
+cast_time = 0.5
+energy_cost = 18.0
+ability_range = 120.0
+targeting_type = "single_target"
+damage_scaling = 1.1
+is_passive = false
+required_tags = PackedStringArray("electric")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_sacrifice"
+
+id = "narrative_event_sacrifice"
+display_name = "The Final Sacrifice"
+description = "An ally makes the ultimate choice"
+chapter = 3
+priority = 9
+dialog = "In the final moment, a great sacrifice is made for the realm..."
+reward_type = "story"
+difficulty = 4

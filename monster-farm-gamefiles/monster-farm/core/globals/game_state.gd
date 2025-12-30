@@ -42,7 +42,9 @@ func change_state(new_state: State) -> void:
 	previous_state = current_state
 	current_state = new_state
 	
-	EventBus.game_state_changed.emit(_state_to_string(new_state))
+	var eb = get_node_or_null("/root/EventBus")
+	if eb and eb.has_signal("game_state_changed"):
+		eb.emit_signal("game_state_changed", _state_to_string(new_state))
 
 
 ## Toggle pause
@@ -57,7 +59,9 @@ func set_paused(paused: bool) -> void:
 	
 	is_paused = paused
 	get_tree().paused = paused
-	EventBus.pause_state_changed.emit(is_paused)
+	var eb = get_node_or_null("/root/EventBus")
+	if eb and eb.has_signal("pause_state_changed"):
+		eb.emit_signal("pause_state_changed", is_paused)
 
 
 ## Check if in combat state
@@ -73,11 +77,17 @@ func is_in_farm() -> bool:
 ## Add a monster to collection
 func add_monster(dna_stack: Resource) -> void:
 	owned_monsters.append(dna_stack)
+	var eb = get_node_or_null("/root/EventBus")
+	if eb and eb.has_signal("game_state_changed"):
+		eb.emit_signal("game_state_changed", _state_to_string(current_state))
 
 
 ## Add DNA to collection
 func add_dna(dna: Resource) -> void:
 	dna_collection.append(dna)
+	var eb = get_node_or_null("/root/EventBus")
+	if eb and eb.has_signal("game_state_changed"):
+		eb.emit_signal("game_state_changed", _state_to_string(current_state))
 
 
 ## Get state as string

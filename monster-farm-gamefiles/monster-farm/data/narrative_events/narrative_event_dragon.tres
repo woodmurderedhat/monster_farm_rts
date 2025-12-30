@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_dragon"
+
+id = "narrative_event_dragon"
+display_name = "The Dragon Rises"
+description = "The legendary Dragon awakens from slumber"
+chapter = 3
+priority = 8
+dialog = "The sky burns. The ancient Dragon has awakened at last..."
+reward_type = "story"
+difficulty = 4

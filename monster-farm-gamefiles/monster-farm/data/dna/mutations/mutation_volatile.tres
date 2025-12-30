@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "mutation_volatile"
+
+id = "mutation_volatile"
+display_name = "Volatile"
+description = "Monster is unpredictable and unstable but powerful"
+rarity = 3
+stat_modifiers = {
+	"attack": 12,
+	"max_health": 20,
+	"defense": -6,
+	"instability": 0.3
+}

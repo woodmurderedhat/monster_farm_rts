@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_invasion"
+
+id = "narrative_event_invasion"
+display_name = "Dark Invasion"
+description = "Corrupted creatures attack from beyond"
+chapter = 3
+priority = 10
+dialog = "The shadows grow darker. An invasion unlike any before approaches..."
+reward_type = "story"
+difficulty = 3

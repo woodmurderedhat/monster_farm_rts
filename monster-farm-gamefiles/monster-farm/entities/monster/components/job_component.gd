@@ -97,7 +97,7 @@ func add_work_progress(amount: float) -> void:
 	
 	# Apply job affinity modifier
 	var job_type: String = current_job.get("type", "")
-	var affinity := work_affinity.get(job_type, 1.0)
+	var affinity : float = work_affinity.get(job_type, 1.0)
 	
 	work_progress_value += amount * efficiency * affinity
 	work_progress_value = clampf(work_progress_value, 0.0, 1.0)
@@ -126,4 +126,3 @@ func get_current_job_type() -> String:
 ## Check if monster has a job
 func has_job() -> bool:
 	return is_working and not current_job.is_empty()
-

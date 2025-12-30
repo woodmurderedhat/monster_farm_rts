@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DNAAbilityResource"]
+resource_name = "ability_stun"
+
+id = "ability_stun"
+display_name = "Stun"
+description = "Stun target enemy, preventing action"
+cooldown = 5.0
+cast_time = 0.5
+energy_cost = 20.0
+ability_range = 90.0
+targeting_type = "single_target"
+is_passive = false
+required_tags = PackedStringArray()

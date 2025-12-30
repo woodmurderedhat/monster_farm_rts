@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DNACoreResource"]
+resource_name = "sprite_core"
+
+id = "core_sprite"
+display_name = "Sprite"
+tags = PackedStringArray("magical", "support", "utility")
+size_modifier = 0.5
+base_stats = {
+	"max_health": 35,
+	"attack": 4,
+	"defense": 3,
+	"speed": 16,
+	"intelligence": 14
+}
+stat_modifiers = {}
+ai_modifiers = {
+	"aggression_level": 0.3,
+	"courage": 0.5,
+	"pack_affinity": 0.8
+}
+work_affinity = {
+	"training": 0.9,
+	"farming": 0.7,
+	"feeding": 0.8
+}
+visual_modifiers = {
+	"body_color": Color.WEB_PURPLE,
+	"size": 0.5
+}

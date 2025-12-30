@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DNAAbilityResource"]
+resource_name = "ability_vine_whip"
+
+id = "ability_vine_whip"
+display_name = "Vine Whip"
+description = "Attack with entangling vines"
+cooldown = 3.5
+cast_time = 0.5
+energy_cost = 20.0
+ability_range = 100.0
+targeting_type = "single_target"
+damage_scaling = 1.2
+is_passive = false
+required_tags = PackedStringArray("nature")

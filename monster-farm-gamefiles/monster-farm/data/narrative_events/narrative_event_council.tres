@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_council"
+
+id = "narrative_event_council"
+display_name = "Council Summons"
+description = "The Farmer's Council has called a meeting"
+chapter = 2
+priority = 4
+dialog = "You are summoned to the council chambers to discuss the fate of the realm..."
+reward_type = "story"

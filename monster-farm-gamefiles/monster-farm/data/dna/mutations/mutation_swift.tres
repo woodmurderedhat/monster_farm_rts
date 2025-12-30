@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "mutation_swift"
+
+id = "mutation_swift"
+display_name = "Swift"
+description = "Monster is much faster and more agile"
+rarity = 2
+stat_modifiers = {
+	"speed": 8,
+	"attack": 3,
+	"defense": -3,
+	"max_health": -10
+}

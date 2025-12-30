@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_victory"
+
+id = "narrative_event_victory"
+display_name = "Ultimate Victory"
+description = "The final battle has been won"
+chapter = 3
+priority = 10
+dialog = "The realm is saved! Your legend will be remembered forever..."
+reward_type = "story"
+is_ending = true

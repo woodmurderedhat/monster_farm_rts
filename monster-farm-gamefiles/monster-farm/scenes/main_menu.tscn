@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://5678"]
+
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1"]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+text = "Monster DNA Farm"
+modulate = Color(1, 0.8, 0.2, 1)
+
+[node name="Subtitle" type="Label" parent="VBoxContainer"]
+text = "An RTS Adventure"
+modulate = Color.WHITE
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+text = "New Game"
+custom_minimum_size = Vector2(200, 50)
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+text = "Continue"
+custom_minimum_size = Vector2(200, 50)
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+text = "Settings"
+custom_minimum_size = Vector2(200, 50)
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+text = "Credits"
+custom_minimum_size = Vector2(200, 50)
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+text = "Quit"
+custom_minimum_size = Vector2(200, 50)

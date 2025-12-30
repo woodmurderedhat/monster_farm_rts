@@ -104,4 +104,3 @@ func validate() -> Array[Dictionary]:
 		})
 	
 	return errors
-

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="JobResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/jobs/job_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+job_id = "job_farm"
+display_name = "Farm"
+description = "Tend crops and resources"
+base_priority = 1.2
+required_tags = []
+forbidden_tags = []
+work_type = "farming"
+danger_level = 0.0
+work_duration = 20.0
+stamina_cost = 12.0
+interruptible = true
+requires_location = true
+satisfies_need = "purpose"
+is_repeating = true
+max_workers = 6

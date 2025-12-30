@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "mutation_resilient"
+
+id = "mutation_resilient"
+display_name = "Resilient"
+description = "Monster is tougher and harder to harm"
+rarity = 2
+stat_modifiers = {
+	"defense": 10,
+	"max_health": 30,
+	"speed": -2,
+	"attack": -2
+}

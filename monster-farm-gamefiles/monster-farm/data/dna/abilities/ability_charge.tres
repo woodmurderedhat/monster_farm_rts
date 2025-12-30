@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DNAAbilityResource"]
+resource_name = "ability_charge"
+
+id = "ability_charge"
+display_name = "Charge"
+description = "Rush forward, dealing damage and displacing target"
+cooldown = 4.0
+cast_time = 0.5
+energy_cost = 25.0
+ability_range = 200.0
+targeting_type = "single_target"
+damage_scaling = 1.5
+is_passive = false
+required_tags = PackedStringArray()

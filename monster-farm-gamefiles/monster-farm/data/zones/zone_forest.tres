@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "zone_forest"
+
+id = "zone_forest"
+display_name = "Dark Forest"
+description = "Ancient forest shrouded in mystery"
+difficulty_level = 2
+monster_pool = ["core_beetle", "element_nature"]
+spawn_rate = 2.5
+level_requirement = 3
+resources_available = ["wood", "herbs", "mushrooms"]
+biome_type = "forest"
+time_modifier = 0.7

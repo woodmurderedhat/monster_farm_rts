@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3xqj8kv5m2nh"]
 
-[ext_resource type="Script" path="res://scenes/game_world.gd" id="1"]
-[ext_resource type="Script" path="res://ui/selection_box.gd" id="2"]
-[ext_resource type="Script" path="res://ui/monster_info_panel.gd" id="3"]
+[ext_resource type="Script" uid="uid://bnm8aq68ynko3" path="res://scenes/game_world.gd" id="1"]
+[ext_resource type="Script" uid="uid://ciwhp1yx1msg2" path="res://ui/selection_box.gd" id="2"]
+[ext_resource type="Script" uid="uid://bk4j4vokkwpfx" path="res://ui/monster_info_panel.gd" id="3"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1")
@@ -63,4 +63,3 @@ layout_mode = 2
 [node name="AbilitiesContainer" type="HBoxContainer" parent="CanvasLayer/MonsterInfoPanel/VBox"]
 layout_mode = 2
 alignment = 1
-

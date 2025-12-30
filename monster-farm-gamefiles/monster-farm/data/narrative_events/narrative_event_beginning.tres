@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_beginning"
+
+id = "narrative_event_beginning"
+display_name = "A New Beginning"
+description = "Your journey as a monster farmer begins"
+chapter = 1
+priority = 1
+dialog = "Welcome to the world of monster farming. Your legend begins here..."
+reward_type = "story"
+is_tutorial = true

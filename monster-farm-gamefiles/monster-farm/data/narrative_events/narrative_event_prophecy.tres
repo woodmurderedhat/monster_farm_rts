@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_prophecy"
+
+id = "narrative_event_prophecy"
+display_name = "The Prophecy"
+description = "An ancient seer reveals your destiny"
+chapter = 1
+priority = 3
+dialog = "The seer speaks of a great farmer who will unite all creatures..."
+reward_type = "story"

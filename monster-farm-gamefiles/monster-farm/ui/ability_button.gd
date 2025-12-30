@@ -35,11 +35,16 @@ func setup(ability: Dictionary, monster: Node2D) -> void:
 	var icon_path: String = ability.get("icon", "")
 	if icon_path and ResourceLoader.exists(icon_path):
 		icon = load(icon_path)
+	# Respect assembler-provided enabled flag
+	var enabled_flag: bool = ability.get("enabled", true)
+	disabled = not enabled_flag
 
 
 ## Handle button press
 func _on_pressed() -> void:
 	if not owner_monster or ability_data.is_empty():
+		return
+	if not ability_data.get("enabled", true):
 		return
 	
 	var combat_comp := owner_monster.get_node_or_null("CombatComponent") as CombatComponent
@@ -60,7 +65,16 @@ func _update_cooldown_display() -> void:
 	
 	var ability_id: String = ability_data.get("id", "")
 	var remaining := combat_comp.get_cooldown_remaining(ability_id)
-	
+    
+	# If ability disabled by assembler, keep button disabled
+	if not ability_data.get("enabled", true):
+		disabled = true
+		if cooldown_overlay:
+			cooldown_overlay.visible = false
+		if cooldown_label:
+			cooldown_label.visible = false
+		return
+
 	if remaining > 0:
 		disabled = true
 		if cooldown_overlay:

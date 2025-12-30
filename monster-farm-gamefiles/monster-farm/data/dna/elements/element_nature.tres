@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DNAElementResource"]
+resource_name = "element_nature"
+
+id = "element_nature"
+display_name = "Nature"
+tags = PackedStringArray("nature", "poison", "regen")
+stat_modifiers = {
+	"max_health": 15,
+	"defense": 4,
+	"intelligence": 3
+}
+ai_modifiers = {
+	"aggression_level": 0.5,
+	"courage": 0.8
+}
+visual_modifiers = {
+	"element_color": Color.SPRING_GREEN,
+	"organic": true
+}
+ability_ids = ["ability_vine_whip", "ability_poison"]

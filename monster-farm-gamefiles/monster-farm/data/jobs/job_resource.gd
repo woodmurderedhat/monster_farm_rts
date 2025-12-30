@@ -14,6 +14,15 @@ class_name JobResource
 ## Base priority (higher = more important)
 @export var base_priority: float = 1.0
 
+## Fulfills a monster's need category (used by AI scoring)
+@export var satisfies_need: String = "none"
+
+## Whether this job repeats after completion
+@export var is_repeating: bool = true
+
+## Maximum simultaneous workers (-1 for unlimited)
+@export var max_workers: int = -1
+
 ## Tags required for a monster to perform this job
 @export var required_tags: Array[String] = []
 

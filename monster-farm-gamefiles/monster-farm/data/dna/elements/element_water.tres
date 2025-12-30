@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DNAElementResource"]
+resource_name = "element_water"
+
+id = "element_water"
+display_name = "Water"
+tags = PackedStringArray("water", "defense", "support")
+stat_modifiers = {
+	"defense": 6,
+	"max_health": 10,
+	"attack": -3
+}
+ai_modifiers = {
+	"aggression_level": 0.4,
+	"courage": 0.7
+}
+visual_modifiers = {
+	"element_color": Color.CYAN,
+	"translucent": true
+}
+ability_ids = ["ability_heal", "ability_shield"]

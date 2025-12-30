@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "world_event_abundance"
+
+id = "world_event_abundance"
+display_name = "Time of Abundance"
+description = "Resources flourish everywhere"
+duration_days = 5
+impact = "positive"
+affected_stats = {
+	"growth_rate": 0.4,
+	"drop_chance": 0.2,
+	"morale": 0.3
+}
+phases = ["beginning", "peak", "end"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "narrative_event_awakening"
+
+id = "narrative_event_awakening"
+display_name = "The Awakening"
+description = "A forgotten power stirs in the ancient lands"
+chapter = 1
+priority = 5
+dialog = "The ground trembles. Something ancient awakens..."
+reward_type = "story"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "world_event_eclipse"
+
+id = "world_event_eclipse"
+display_name = "Lunar Eclipse"
+description = "The world is cloaked in shadow"
+duration_days = 1
+impact = "mixed"
+affected_stats = {
+	"night_power": 0.5,
+	"visibility": -0.2
+}
+phases = ["approach", "totality", "departure"]

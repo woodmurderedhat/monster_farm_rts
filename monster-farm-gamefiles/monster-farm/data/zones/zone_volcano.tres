@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "zone_volcano"
+
+id = "zone_volcano"
+display_name = "Volcano"
+description = "Scorching volcanic landscape with fire elements"
+difficulty_level = 2
+monster_pool = ["core_drake", "element_fire"]
+spawn_rate = 2.0
+level_requirement = 5
+resources_available = ["lava_stone", "sulfur"]
+biome_type = "volcanic"
+elemental_damage = "fire"

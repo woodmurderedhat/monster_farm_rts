@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Resource"]
+resource_name = "raid_shadow_creatures"
+
+id = "raid_shadow_creatures"
+display_name = "Shadow Invasion"
+description = "Dark creatures emerge from the shadows"
+difficulty = 3
+wave_count = 4
+enemy_pool = ["core_sprite", "core_sprite", "core_beetle"]
+boss_id = "core_beetle"
+reward_gold = 2000
+reward_xp = 1000
