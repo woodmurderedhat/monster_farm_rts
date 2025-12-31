@@ -1,5 +1,6 @@
 # DNA Ability Resource - Defines a monster ability (data only)
 # Logic lives in ability runtime system, not here
+@tool
 extends BaseDNAResource
 class_name DNAAbilityResource
 

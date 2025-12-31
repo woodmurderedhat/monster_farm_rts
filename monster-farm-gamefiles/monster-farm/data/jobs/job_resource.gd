@@ -1,6 +1,6 @@
 # Job Resource - Defines a type of work that can be performed
 extends Resource
-class_name JobResource
+class_name FarmJobResource
 
 ## Unique identifier for this job type
 @export var job_id: String = ""

@@ -1,29 +1,29 @@
-[gd_resource type="Resource" script_class="DNACoreResource"]
-resource_name = "beetle_core"
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "core_beetle"
 display_name = "Beetle"
-tags = PackedStringArray("insect", "armored", "tank")
-size_modifier = 0.8
-base_stats = {
-	"max_health": 90,
-	"attack": 10,
-	"defense": 14,
-	"speed": 6,
-	"intelligence": 2
+description = "A sturdy insectoid creature"
+rarity = 1
+tags = ["insect", "armored", "tank"]
+incompatible_tags = []
+stat_modifiers = {
+	"defense": 10,
+	"health": 20
 }
-stat_modifiers = {}
-ai_modifiers = {
-	"aggression_level": 0.6,
-	"courage": 0.9,
-	"pack_affinity": 0.7
-}
-work_affinity = {
-	"construction": 0.8,
-	"defense": 0.85,
-	"farming": 0.9
-}
-visual_modifiers = {
-	"body_color": Color.WEB_BLACK,
-	"size": 0.8
-}
+ai_modifiers = {}
+visual_modifiers = {}
+body_type = 0
+movement_type = 0
+base_size = 1.0
+base_mass = 1.2
+base_health = 100
+base_stamina = 90
+base_speed = 70.0
+allowed_elements = ["bio", "earth"]
+ability_slots = 2
+mutation_capacity = 1
+

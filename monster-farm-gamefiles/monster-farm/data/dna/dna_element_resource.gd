@@ -1,5 +1,6 @@
 # DNA Element Resource - Defines elemental affinities and resistances
 # Monsters can have 1-3 elements depending on DNACore settings
+@tool
 extends BaseDNAResource
 class_name DNAElementResource
 

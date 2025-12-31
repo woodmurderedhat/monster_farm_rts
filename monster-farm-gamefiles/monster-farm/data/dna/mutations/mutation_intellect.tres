@@ -1,12 +1,25 @@
-[gd_resource type="Resource" script_class="Resource"]
-resource_name = "mutation_intellect"
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "mutation_intellect"
 display_name = "Intellect"
-description = "Monster is more intelligent and tactical"
-rarity = 2
+description = "Increased intelligence and magic"
+rarity = 1
+tags = ["intellect", "magic"]
+incompatible_tags = []
 stat_modifiers = {
-	"intelligence": 8,
-	"attack": 4,
-	"speed": 2
+	"magic": 10,
+	"wisdom": 10
 }
+ai_modifiers = {}
+visual_modifiers = {}
+mutation_type = 0
+instability_value = 0.05
+override_rules = {}
+forced_visuals = {}
+can_cause_feral = false
+inheritance_chance = 0.5
+

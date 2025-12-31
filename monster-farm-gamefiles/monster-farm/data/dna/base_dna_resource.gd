@@ -1,5 +1,6 @@
 # Base DNA Resource - All DNA types inherit from this
 # Contains shared fields for identification, rarity, tags, and modifiers
+@tool
 extends Resource
 class_name BaseDNAResource
 

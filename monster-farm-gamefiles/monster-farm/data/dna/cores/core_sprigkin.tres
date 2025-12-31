@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "core_sprigkin"
+display_name = "Sprigkin"
+description = "A small, fast creature with high agility and evasion"
+rarity = 1
+tags = ["small", "fast", "evasive", "quadruped"]
+incompatible_tags = ["heavy", "slow", "tank"]
+stat_modifiers = {
+	"agility": 15,
+	"speed": 20,
+	"dodge": 10,
+	"attack": 5
+}
+ai_modifiers = {}
+visual_modifiers = {
+	"primary_color": "#90EE90",
+	"scale": 0.8,
+	"animation_speed": 1.2
+}
+body_type = 0
+movement_type = 0
+base_size = 0.8
+base_mass = 0.6
+base_health = 60
+base_stamina = 120
+base_speed = 150.0
+allowed_elements = ["fire", "lightning"]
+ability_slots = 3
+mutation_capacity = 1
+

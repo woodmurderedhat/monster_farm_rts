@@ -1,5 +1,6 @@
 # DNA Core Resource - Defines the monster's physical foundation
 # Required for every monster - only one allowed per DNA stack
+@tool
 extends BaseDNAResource
 class_name DNACoreResource
 

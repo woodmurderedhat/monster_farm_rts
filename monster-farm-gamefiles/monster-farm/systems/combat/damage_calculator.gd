@@ -1,58 +1,70 @@
 extends Node
-## Damage calculation system
+## Damage calculation system following combat-and-ability-spec.md
 
-static func calculate_damage(attacker: Node, defender: Node, ability: Dictionary) -> int:
+# Final Damage = (BasePower + (Attack * 0.1) - (Defense / 2)) * CritMultiplier * InstabilityBonus
+
+static func calculate_damage(attacker: Node2D, defender: Node2D, ability: Dictionary) -> float:
 	var attacker_stats = attacker.get_meta("stat_block", {})
 	var defender_stats = defender.get_meta("stat_block", {})
 	
-	var base_damage = ability.get("base_damage", 10)
-	var attacker_attack = attacker_stats.get("attack", 5)
-	var defender_defense = defender_stats.get("defense", 2)
+	# Get base power from ability
+	var base_power = ability.get("base_power", 10.0)
+	var attack = attacker_stats.get("attack", 0.0)
+	var defense = defender_stats.get("defense", 0.0)
 	
-	# Basic formula: base + attacker - defender/2
-	var calculated_damage = base_damage + attacker_attack - (defender_defense / 2.0)
+	# Base calculation
+	var damage = base_power + (attack * 0.1) - (defense / 2.0)
 	
-	# Apply randomness (±20%)
-	var randomness = randf_range(0.8, 1.2)
-	calculated_damage = int(calculated_damage * randomness)
+	# Apply critical hit (1.5x damage)
+	if roll_critical(attacker):
+		damage *= 1.5
 	
-	# Ensure minimum damage
-	calculated_damage = max(1, calculated_damage)
+	# Apply instability bonus (chaotic damage from mutations)
+	var instability = attacker.get_meta("instability", 0.0)
+	if instability > 0:
+		damage *= (1.0 + instability * 0.5)  # Up to 50% bonus at 100% instability
 	
-	return calculated_damage
+	# Ensure minimum damage of 1
+	return maxf(1.0, damage)
 
-static func get_hit_chance(attacker: Node, defender: Node) -> float:
+
+static func get_hit_chance(attacker: Node2D, defender: Node2D) -> float:
 	var attacker_stats = attacker.get_meta("stat_block", {})
 	var defender_stats = defender.get_meta("stat_block", {})
 	
 	var accuracy = attacker_stats.get("accuracy", 0.85)
 	var evasion = defender_stats.get("evasion", 0.1)
 	
-	return clamp(accuracy - evasion, 0.5, 0.95)
+	return clampf(accuracy - evasion, 0.5, 0.95)
 
-static func roll_hit(attacker: Node, defender: Node) -> bool:
+
+static func roll_hit(attacker: Node2D, defender: Node2D) -> bool:
 	var hit_chance = get_hit_chance(attacker, defender)
 	return randf() <= hit_chance
 
-static func roll_critical(attacker: Node) -> bool:
+
+static func roll_critical(attacker: Node2D) -> bool:
 	var attacker_stats = attacker.get_meta("stat_block", {})
 	var crit_chance = attacker_stats.get("crit_chance", 0.1)
 	return randf() <= crit_chance
 
-static func apply_damage(defender: Node, damage: int, is_critical: bool = false) -> int:
-	if defender.has_meta("stat_block"):
-		var stats = defender.get_meta("stat_block")
+
+static func apply_damage(defender: Node2D, damage: float, attacker: Node2D = null, is_critical: bool = false) -> float:
+	var health_component = defender.get_node_or_null("HealthComponent") as HealthComponent
+	if health_component:
 		var final_damage = damage
 		
 		if is_critical:
-			final_damage = int(damage * 1.5)  # 50% bonus
+			final_damage = damage * 1.5  # 50% bonus
 		
-		stats["current_health"] = max(0, stats.get("current_health", 100) - final_damage)
-		defender.set_meta("stat_block", stats)
+		health_component.take_damage(final_damage, attacker)
 		
-		if stats["current_health"] <= 0:
-			EventBus.monster_defeated.emit(defender)
+		# Add threat if target has threat component
+		if is_instance_valid(attacker):
+			var threat_comp = defender.get_node_or_null("ThreatComponent") as ThreatComponent
+			if threat_comp:
+				threat_comp.add_damage_threat(attacker, final_damage)
 		
 		return final_damage
 	
-	return 0
+	return 0.0

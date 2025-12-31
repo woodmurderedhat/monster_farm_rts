@@ -3,6 +3,9 @@
 extends Node
 class_name AbilityExecutor
 
+## Import dependencies
+var DamageCalculator = preload("res://systems/combat/damage_calculator.gd")
+
 
 ## Execute an ability
 ## Returns true if ability was successfully executed
@@ -13,25 +16,24 @@ static func execute(
 ) -> bool:
 	var ability_id: String = ability_data.get("id", "")
 	var targeting_type: int = ability_data.get("targeting_type", 1)
-	var base_power: float = ability_data.get("base_power", 10)
 	var aoe_radius: float = ability_data.get("aoe_radius", 0)
 	
-	# Calculate actual power with scaling
-	var power := _calculate_power(user, ability_data)
+	# Update base power with stat scaling
+	ability_data["base_power"] = _calculate_power(user, ability_data)
 	
 	# Execute based on targeting type
 	match targeting_type:
 		0:  # Self
-			return _execute_self_ability(user, ability_id, power)
+			return _execute_self_ability(user, ability_id, ability_data)
 		1:  # Target
 			if target is Node2D:
-				return _execute_target_ability(user, target as Node2D, ability_id, power)
+				return _execute_target_ability(user, target as Node2D, ability_id, ability_data)
 		2:  # Area
 			if target is Node2D:
-				return _execute_area_ability(user, target as Node2D, ability_id, power, aoe_radius)
+				return _execute_area_ability(user, target as Node2D, ability_id, ability_data, aoe_radius)
 		3:  # Cone
 			if target is Node2D:
-				return _execute_cone_ability(user, target as Node2D, ability_id, power)
+				return _execute_cone_ability(user, target as Node2D, ability_id, ability_data)
 	
 	return false
 
@@ -51,7 +53,9 @@ static func _calculate_power(user: Node2D, ability_data: Dictionary) -> float:
 
 
 ## Execute self-targeting ability
-static func _execute_self_ability(user: Node2D, ability_id: String, power: float) -> bool:
+static func _execute_self_ability(user: Node2D, ability_id: String, ability_data: Dictionary) -> bool:
+	var power: float = ability_data.get("base_power", 10.0)
+	
 	match ability_id:
 		"shield":
 			# Apply shield buff
@@ -74,26 +78,26 @@ static func _execute_target_ability(
 	user: Node2D,
 	target: Node2D,
 	ability_id: String,
-	power: float
+	ability_data: Dictionary
 ) -> bool:
 	match ability_id:
-		"bite", "attack":
-			return _deal_damage(user, target, power)
+		"bite", "attack", "fireball", "charge":
+			return _deal_damage(user, target, ability_data)
 		"heal":
 			var health_comp := target.get_node_or_null("HealthComponent") as HealthComponent
 			if health_comp:
+				var power: float = ability_data.get("base_power", 10.0)
 				health_comp.heal(power, user)
 				EventBus.ability_used.emit(user, ability_id, target)
 				return true
 		"poison_spit":
-			# Deal damage and apply poison
-			_deal_damage(user, target, power * 0.3)
-			# TODO: Apply poison status effect
+			# Deal damage and apply poison (TODO: status effects)
+			_deal_damage(user, target, ability_data)
 			EventBus.ability_used.emit(user, ability_id, target)
 			return true
 		_:
 			# Default: deal damage
-			return _deal_damage(user, target, power)
+			return _deal_damage(user, target, ability_data)
 	
 	return false
 
@@ -103,14 +107,14 @@ static func _execute_area_ability(
 	user: Node2D,
 	center: Node2D,
 	ability_id: String,
-	power: float,
+	ability_data: Dictionary,
 	radius: float
 ) -> bool:
 	# Get all targets in radius
 	var targets := _get_targets_in_radius(center.global_position, radius, user)
 	
 	for target in targets:
-		_deal_damage(user, target, power)
+		_deal_damage(user, target, ability_data)
 	
 	EventBus.ability_used.emit(user, ability_id, center)
 	return targets.size() > 0
@@ -121,7 +125,7 @@ static func _execute_cone_ability(
 	user: Node2D,
 	direction_target: Node2D,
 	ability_id: String,
-	power: float
+	ability_data: Dictionary
 ) -> bool:
 	# Cone abilities hit targets in a cone shape
 	# Simplified implementation
@@ -132,30 +136,38 @@ static func _execute_cone_ability(
 		var target_dir := user.global_position.direction_to(target.global_position)
 		var angle := direction.angle_to(target_dir)
 		if abs(angle) < PI / 4:  # 45 degree cone
-			_deal_damage(user, target, power)
+			_deal_damage(user, target, ability_data)
 	
 	EventBus.ability_used.emit(user, ability_id, direction_target)
 	return true
 
 
-## Deal damage to a target
-static func _deal_damage(attacker: Node2D, target: Node2D, amount: float) -> bool:
-	var health_comp := target.get_node_or_null("HealthComponent") as HealthComponent
-	if health_comp:
-		health_comp.take_damage(amount, attacker)
-		EventBus.damage_dealt.emit(attacker, target, amount)
-		
-		# Add threat
-		var threat_comp := target.get_node_or_null("ThreatComponent") as ThreatComponent
-		if threat_comp:
-			threat_comp.add_damage_threat(attacker, amount)
-		
-		return true
-	return false
+## Deal damage to a target using the damage calculator
+static func _deal_damage(attacker: Node2D, target: Node2D, ability_data: Dictionary) -> bool:
+	var damage_calc = preload("res://systems/combat/damage_calculator.gd")
+	
+	# Check if hit lands
+	if not damage_calc.roll_hit(attacker, target):
+		EventBus.ability_used.emit(attacker, ability_data.get("id", ""), target)
+		return false  # Miss!
+	
+	# Roll for critical
+	var is_critical: bool = damage_calc.roll_critical(attacker)
+	
+	# Calculate damage
+	var damage: float = damage_calc.calculate_damage(attacker, target, ability_data)
+	
+	# Apply damage
+	var final_damage: float = damage_calc.apply_damage(target, damage, attacker, is_critical)
+	
+	# Broadcast event
+	EventBus.damage_dealt.emit(attacker, target, final_damage)
+	EventBus.ability_used.emit(attacker, ability_data.get("id", ""), target)
+	return true
 
 
 ## Get all valid targets in a radius
-static func _get_targets_in_radius(position: Vector2, radius: float, exclude: Node2D) -> Array[Node2D]:
+static func _get_targets_in_radius(_position: Vector2, _radius: float, _exclude: Node2D) -> Array[Node2D]:
 	var targets: Array[Node2D] = []
 	# This would use physics queries in a real implementation
 	# For now, return empty - needs scene tree access

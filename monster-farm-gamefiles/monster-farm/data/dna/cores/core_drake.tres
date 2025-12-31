@@ -1,29 +1,31 @@
-[gd_resource type="Resource" script_class="DNACoreResource"]
-resource_name = "drake_core"
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "core_drake"
 display_name = "Drake"
-tags = PackedStringArray("reptile", "flying", "dps")
-size_modifier = 0.9
-base_stats = {
-	"max_health": 70,
-	"attack": 16,
-	"defense": 7,
-	"speed": 12,
-	"intelligence": 10
+description = "A powerful draconic creature"
+rarity = 2
+tags = ["drake", "dragon", "powerful"]
+incompatible_tags = []
+stat_modifiers = {
+	"attack": 20,
+	"magic": 15
 }
-stat_modifiers = {}
-ai_modifiers = {
-	"aggression_level": 0.9,
-	"courage": 0.8,
-	"pack_affinity": 0.4
-}
-work_affinity = {
-	"hunting": 0.85,
-	"patrol": 0.8,
-	"training": 0.6
-}
+ai_modifiers = {}
 visual_modifiers = {
-	"body_color": Color.WEB_GREEN,
+	"body_color": Color(0, 0.5, 0, 1),
 	"size": 0.9
 }
+body_type = 0
+movement_type = 1
+base_size = 1.5
+base_mass = 2.5
+base_health = 150
+base_stamina = 100
+base_speed = 120.0
+allowed_elements = ["fire", "void"]
+ability_slots = 3
+mutation_capacity = 2

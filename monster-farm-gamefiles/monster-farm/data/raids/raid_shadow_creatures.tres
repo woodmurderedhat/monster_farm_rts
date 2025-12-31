@@ -10,3 +10,7 @@ enemy_pool = ["core_sprite", "core_sprite", "core_beetle"]
 boss_id = "core_beetle"
 reward_gold = 2000
 reward_xp = 1000
+boss_behavior_id = ""
+boss_ability_ids = []
+boss_name = ""
+boss_portrait = null

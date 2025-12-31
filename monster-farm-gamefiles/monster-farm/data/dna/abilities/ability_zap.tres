@@ -1,14 +1,25 @@
-[gd_resource type="Resource" script_class="DNAAbilityResource"]
-resource_name = "ability_zap"
+[gd_resource type="Resource" script_class="DNAAbilityResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_ability_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "ability_zap"
 display_name = "Zap"
-description = "Send a bolt of electricity to target"
-cooldown = 3.0
-cast_time = 0.5
-energy_cost = 18.0
-ability_range = 120.0
-targeting_type = "single_target"
-damage_scaling = 1.1
-is_passive = false
-required_tags = PackedStringArray("electric")
+description = "Send electricity bolt"
+rarity = 0
+tags = ["attack", "lightning"]
+incompatible_tags = []
+stat_modifiers = {}
+ai_modifiers = {}
+visual_modifiers = {}
+ability_id = "zap"
+cooldown = 1.5
+energy_cost = 12.0
+ability_range = 4.0
+targeting_type = 1
+scaling_stats = ["attack", "electric_damage"]
+required_tags = ["lightning"]
+base_power = 15.0
+aoe_radius = 0.0
+

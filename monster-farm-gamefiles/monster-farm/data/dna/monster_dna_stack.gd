@@ -1,5 +1,6 @@
 # Monster DNA Stack - Container for all DNA parts that make up a monster
 # This is the complete genetic blueprint for monster creation
+@tool
 extends Resource
 class_name MonsterDNAStack
 
@@ -110,6 +111,92 @@ func has_element(element_type: String) -> bool:
 ## Check if the stack is complete (has required parts)
 func is_complete() -> bool:
 	return core != null and behavior != null and not abilities.is_empty()
+
+
+## Get AI configuration aggregated from all DNA parts
+func get_ai_configuration() -> Dictionary:
+	var ai_config: Dictionary = {}
+	
+	# Base config from behavior DNA
+	if behavior:
+		ai_config = {
+			"aggression": behavior.aggression,
+			"loyalty": behavior.loyalty,
+			"curiosity": behavior.curiosity,
+			"stress_tolerance": behavior.stress_tolerance,
+			"combat_roles": behavior.combat_roles.duplicate(),
+			"work_affinity": behavior.work_affinity.duplicate()
+		}
+	else:
+		ai_config = {
+			"aggression": 0.5,
+			"loyalty": 0.5,
+			"curiosity": 0.5,
+			"stress_tolerance": 0.5,
+			"combat_roles": ["dps"],
+			"work_affinity": {}
+		}
+	
+	# Apply modifiers from all DNA parts
+	var all_parts: Array = [core]
+	all_parts.append_array(elements)
+	all_parts.append_array(abilities)
+	all_parts.append_array(mutations)
+	
+	for part in all_parts:
+		if part and part is BaseDNAResource and part.ai_modifiers:
+			for ai_param in part.ai_modifiers:
+				if ai_config.has(ai_param):
+					var current = ai_config[ai_param]
+					if typeof(current) in [TYPE_INT, TYPE_FLOAT]:
+						ai_config[ai_param] += part.ai_modifiers[ai_param]
+				else:
+					ai_config[ai_param] = part.ai_modifiers[ai_param]
+	
+	# Clamp behavioral stats to 0.0-1.0
+	ai_config["aggression"] = clampf(ai_config.get("aggression", 0.5), 0.0, 1.0)
+	ai_config["loyalty"] = clampf(ai_config.get("loyalty", 0.5), 0.0, 1.0)
+	ai_config["curiosity"] = clampf(ai_config.get("curiosity", 0.5), 0.0, 1.0)
+	ai_config["stress_tolerance"] = clampf(ai_config.get("stress_tolerance", 0.5), 0.0, 1.0)
+	
+	return ai_config
+
+
+## Get visual layer modifiers in application order
+func get_visual_layers() -> Array[Dictionary]:
+	var layers: Array[Dictionary] = []
+	
+	# Base layer from core
+	if core:
+		layers.append({
+			"source": core.id,
+			"type": "core",
+			"body_type": core.get_body_type_name(),
+			"size_multiplier": core.base_size,
+			"modifiers": core.visual_modifiers.duplicate()
+		})
+	
+	# Element layers
+	for element in elements:
+		if element:
+			layers.append({
+				"source": element.id,
+				"type": "element",
+				"element_type": element.element_type,
+				"modifiers": element.visual_modifiers.duplicate()
+			})
+	
+	# Mutation layers (applied last, can override)
+	for mutation in mutations:
+		if mutation:
+			layers.append({
+				"source": mutation.id,
+				"type": "mutation",
+				"instability": mutation.instability_value,
+				"modifiers": mutation.visual_modifiers.duplicate()
+			})
+	
+	return layers
 
 
 ## Get a summary string for debugging

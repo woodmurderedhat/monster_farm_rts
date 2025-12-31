@@ -1,13 +1,25 @@
-[gd_resource type="Resource" script_class="DNAAbilityResource"]
-resource_name = "ability_taunt"
+[gd_resource type="Resource" script_class="DNAAbilityResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_ability_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "ability_taunt"
 display_name = "Taunt"
-description = "Draw enemy aggression to self"
-cooldown = 4.0
-cast_time = 0.3
+description = "Draw aggression"
+rarity = 0
+tags = ["control", "taunt"]
+incompatible_tags = []
+stat_modifiers = {}
+ai_modifiers = {}
+visual_modifiers = {}
+ability_id = "taunt"
+cooldown = 3.0
 energy_cost = 15.0
-ability_range = 80.0
-targeting_type = "single_target"
-is_passive = false
-required_tags = PackedStringArray()
+ability_range = 5.0
+targeting_type = 1
+scaling_stats = []
+required_tags = []
+base_power = 0.0
+aoe_radius = 0.0
+

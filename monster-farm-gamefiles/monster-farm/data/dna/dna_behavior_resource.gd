@@ -1,5 +1,6 @@
 # DNA Behavior Resource - Defines personality and AI tendencies
 # Exactly one behavior profile required per monster
+@tool
 extends BaseDNAResource
 class_name DNABehaviorResource
 

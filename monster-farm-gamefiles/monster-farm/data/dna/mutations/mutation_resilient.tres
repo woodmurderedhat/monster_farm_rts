@@ -1,13 +1,25 @@
-[gd_resource type="Resource" script_class="Resource"]
-resource_name = "mutation_resilient"
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "mutation_resilient"
 display_name = "Resilient"
-description = "Monster is tougher and harder to harm"
-rarity = 2
+description = "Increased defense and health"
+rarity = 1
+tags = ["resilient", "defense"]
+incompatible_tags = []
 stat_modifiers = {
-	"defense": 10,
-	"max_health": 30,
-	"speed": -2,
-	"attack": -2
+	"defense": 15,
+	"health": 20
 }
+ai_modifiers = {}
+visual_modifiers = {}
+mutation_type = 0
+instability_value = 0.05
+override_rules = {}
+forced_visuals = {}
+can_cause_feral = false
+inheritance_chance = 0.5
+

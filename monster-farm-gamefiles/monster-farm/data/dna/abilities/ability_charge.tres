@@ -1,14 +1,25 @@
-[gd_resource type="Resource" script_class="DNAAbilityResource"]
-resource_name = "ability_charge"
+[gd_resource type="Resource" script_class="DNAAbilityResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_ability_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "ability_charge"
 display_name = "Charge"
-description = "Rush forward, dealing damage and displacing target"
-cooldown = 4.0
-cast_time = 0.5
+description = "Rush forward, dealing damage"
+rarity = 1
+tags = ["attack", "movement"]
+incompatible_tags = []
+stat_modifiers = {}
+ai_modifiers = {}
+visual_modifiers = {}
+ability_id = "charge"
+cooldown = 3.0
 energy_cost = 25.0
-ability_range = 200.0
-targeting_type = "single_target"
-damage_scaling = 1.5
-is_passive = false
-required_tags = PackedStringArray()
+ability_range = 8.0
+targeting_type = 1
+scaling_stats = ["attack"]
+required_tags = []
+base_power = 25.0
+aoe_radius = 0.0
+

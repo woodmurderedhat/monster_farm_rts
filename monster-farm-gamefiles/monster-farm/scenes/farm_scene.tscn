@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://farmscene"]
+[gd_scene load_steps=1 format=3 uid="uid://farmscene"]
 
 [ext_resource type="Script" path="res://scenes/farm_scene.gd" id="1"]
 
 [node name="FarmScene" type="Node2D"]
-script = SubResource("1")
+script = ExtResource("1")
 
 [node name="FarmTileMap" type="TileMap" parent="."]
 

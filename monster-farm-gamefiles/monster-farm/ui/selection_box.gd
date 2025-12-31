@@ -49,4 +49,3 @@ func _get_rect() -> Rect2:
 	var min_pos := Vector2(minf(start_pos.x, end_pos.x), minf(start_pos.y, end_pos.y))
 	var max_pos := Vector2(maxf(start_pos.x, end_pos.x), maxf(start_pos.y, end_pos.y))
 	return Rect2(min_pos, max_pos - min_pos)
-

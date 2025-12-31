@@ -1,5 +1,6 @@
 # DNA Mutation Resource - Defines unstable or rule-breaking modifiers
 # Mutations can override normal validation rules and force visual changes
+@tool
 extends BaseDNAResource
 class_name DNAMutationResource
 

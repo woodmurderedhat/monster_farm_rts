@@ -95,7 +95,7 @@ func _evaluate_jobs() -> void:
 
 ## Score a job for this monster
 func _score_job(job: Dictionary) -> float:
-	var job_type: JobResource = job.type
+	var job_type: FarmJobResource = job.type
 	var score := job_type.base_priority * 10.0
 	
 	# DNA Affinity bonus

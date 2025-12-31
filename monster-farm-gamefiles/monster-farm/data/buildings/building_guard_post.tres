@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/buildings/building_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "guard_post"
+display_name = "Guard Post"
+job_type_id = "job_defend"
+default_position = Vector2(500, 180)
+placement_type = "gate"
+snap_step = Vector2(80, 0)
+cost = {"stone": 14, "wood": 10}

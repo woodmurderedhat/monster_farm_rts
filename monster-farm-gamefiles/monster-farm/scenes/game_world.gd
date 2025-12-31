@@ -119,6 +119,9 @@ func _setup_systems() -> void:
 	# === Raid System ===
 	raid_manager = RaidManager.new()
 	raid_manager.name = "RaidManager"
+	raid_manager.monster_assembler = monster_assembler
+	raid_manager.combat_manager = combat_manager
+	raid_manager.farm_manager = farm_manager
 	add_child(raid_manager)
 	
 	# === Game State Manager ===
@@ -162,7 +165,7 @@ func _connect_signals() -> void:
 		EventBus.damage_dealt.connect(_on_damage_dealt)
 		EventBus.zone_cleared.connect(_on_zone_cleared)
 		EventBus.raid_started.connect(_on_raid_started)
-		EventBus.raid_completed.connect(_on_raid_completed)
+		EventBus.raid_ended.connect(_on_raid_ended)
 
 
 func _on_monster_spawned(monster):
@@ -179,13 +182,10 @@ func _on_zone_cleared(zone_id):
 func _on_raid_started(_raid_data):
 	print("Raid started!")
 
-func _on_raid_completed(_raid_id):
+
+func _on_raid_ended(success: bool):
 	if main_ui:
-		main_ui.add_log_entry("Raid completed!")
-
-
-	# Set initial game state
-	game_state_manager.change_state(GameStateManager.GameMode.WORLD_EXPLORATION)
+		main_ui.add_log_entry("Raid %s" % ("defended" if success else "failed"))
 
 
 ## Spawn test monsters for development

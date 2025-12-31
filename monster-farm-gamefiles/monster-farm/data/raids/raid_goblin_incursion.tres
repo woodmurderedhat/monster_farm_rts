@@ -10,3 +10,7 @@ enemy_pool = ["core_goblin", "core_goblin", "core_sprite"]
 boss_id = ""
 reward_gold = 500
 reward_xp = 250
+boss_behavior_id = ""
+boss_ability_ids = []
+boss_name = ""
+boss_portrait = null

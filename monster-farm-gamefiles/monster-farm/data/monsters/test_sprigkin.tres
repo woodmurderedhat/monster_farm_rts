@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MonsterDNAStack" load_steps=6 format=3]
+
+[ext_resource type="Resource" id="1" path="res://data/dna/cores/core_sprigkin.tres"]
+[ext_resource type="Resource" id="2" path="res://data/dna/elements/elem_fire.tres"]
+[ext_resource type="Resource" id="3" path="res://data/dna/behaviors/behavior_aggressive.tres"]
+[ext_resource type="Resource" id="4" path="res://data/dna/abilities/ability_bite.tres"]
+[ext_resource type="Resource" id="5" path="res://data/dna/abilities/ability_fireball.tres"]
+
+[resource]
+script = SubResource("1")
+core = ExtResource("1")
+elements = [ExtResource("2")]
+behavior = ExtResource("3")
+abilities = [ExtResource("4"), ExtResource("5")]
+mutations = []

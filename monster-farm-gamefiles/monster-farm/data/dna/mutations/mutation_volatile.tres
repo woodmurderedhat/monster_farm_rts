@@ -1,13 +1,25 @@
-[gd_resource type="Resource" script_class="Resource"]
-resource_name = "mutation_volatile"
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "mutation_volatile"
 display_name = "Volatile"
-description = "Monster is unpredictable and unstable but powerful"
-rarity = 3
+description = "Unstable but powerful"
+rarity = 2
+tags = ["volatile", "chaos"]
+incompatible_tags = []
 stat_modifiers = {
-	"attack": 12,
-	"max_health": 20,
-	"defense": -6,
+	"attack": 20,
 	"instability": 0.3
 }
+ai_modifiers = {}
+visual_modifiers = {}
+mutation_type = 2
+instability_value = 0.3
+override_rules = {}
+forced_visuals = {}
+can_cause_feral = true
+inheritance_chance = 0.5
+

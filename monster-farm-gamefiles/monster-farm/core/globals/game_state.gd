@@ -29,9 +29,59 @@ var owned_monsters: Array[Resource] = []
 ## Collected DNA stacks
 var dna_collection: Array[Resource] = []
 
+# Lightweight player progression/state snapshot
+var player_state: Dictionary = {
+	"gold": 0,
+	"total_xp": 0,
+	"level": 1
+}
+
+# World time tracking used by UI
+var current_day: int = 1
+var current_period: String = "Dawn"
+
+# Session timing (used for playtime bookkeeping)
+var session_start_time: int = 0
+var playtime: int = 0
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	session_start_time = int(Time.get_unix_time_from_system())
+	playtime = 0
+
+
+## Initialize a fresh game session from the main menu
+func start_new_game() -> void:
+	# Reset stateful data so new sessions do not leak prior runs
+	current_farm = {
+		"name": "Starter Farm",
+		"level": 1,
+		"resources": {
+			"wood": 120,
+			"stone": 90,
+			"metal": 60,
+			"herbs": 80
+		},
+		"unlocked_buildings": [],
+		"active_jobs": []
+	}
+	owned_monsters.clear()
+	dna_collection.clear()
+	player_state = {
+		"gold": 0,
+		"total_xp": 0,
+		"level": 1
+	}
+	current_day = 1
+	current_period = "Dawn"
+	previous_state = State.MAIN_MENU
+	is_paused = false
+	get_tree().paused = false
+	session_start_time = int(Time.get_unix_time_from_system())
+	playtime = 0
+
+	change_state(State.WORLD_EXPLORATION)
 
 
 ## Change game state
@@ -99,4 +149,3 @@ func _state_to_string(state: State) -> String:
 		State.RAID_DEFENSE: return "raid"
 		State.PAUSED: return "paused"
 		_: return "unknown"
-

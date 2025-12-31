@@ -1,3 +1,7 @@
 {
-    "godotTools.editorPath.godot4": "c:\\Users\\Stephanus\\Desktop\\Work Studio\\Godot_v4.5.1-stable_win64\\Godot_v4.5.1-stable_win64.exe"
+    "godotTools.editorPath.godot4": "c:\\Program Files\\Godot\\Godot_v4.5.1-stable_win64\\Godot_v4.5.1-stable_win64.exe",
+    "files.associations": {
+        "*.tres": "gdresource",
+        "*.tscn": "gdscene"
+    }
 }

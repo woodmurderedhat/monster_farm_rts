@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/buildings/building_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "dna_lab"
+display_name = "DNA Lab"
+job_type_id = "job_build"
+default_position = Vector2(260, 180)
+placement_type = "structure"
+snap_step = Vector2(40, 0)
+cost = {"stone": 15, "metal": 12}

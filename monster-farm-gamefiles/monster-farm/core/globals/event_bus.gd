@@ -1,5 +1,6 @@
 # EventBus - Global signal hub for cross-system communication
 # Autoload singleton for decoupled event handling
+@warning_ignore("unused_signal")  # Signals are consumed dynamically across the project
 extends Node
 
 # ==== Monster Events ====
@@ -161,4 +162,3 @@ signal monster_buffed(monster: Node, buff_type: String, multiplier: float, durat
 
 ## Emitted when enemy is stunned
 signal enemy_stunned(enemy: Node, duration: float)
-

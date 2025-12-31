@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://5678"]
+[gd_scene load_steps=1 format=3 uid="uid://5678"]
 
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1"]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource("1")
+script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -29,7 +29,7 @@ modulate = Color(1, 0.8, 0.2, 1)
 
 [node name="Subtitle" type="Label" parent="VBoxContainer"]
 text = "An RTS Adventure"
-modulate = Color.WHITE
+modulate = Color(1, 1, 1, 1)
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 text = "New Game"

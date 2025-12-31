@@ -1,20 +1,24 @@
-[gd_resource type="Resource" script_class="DNAElementResource"]
-resource_name = "element_water"
+[gd_resource type="Resource" script_class="DNAElementResource" load_steps=2 format=3]
 
-id = "element_water"
-display_name = "Water"
-tags = PackedStringArray("water", "defense", "support")
+[ext_resource type="Script" path="res://data/dna/dna_element_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "elem_water"
+display_name = "Water Element"
+description = "Enhances defense and healing"
+rarity = 0
+tags = ["water", "healing", "defense"]
+incompatible_tags = []
 stat_modifiers = {
-	"defense": 6,
-	"max_health": 10,
-	"attack": -3
+	"defense": 10,
+	"healing_power": 15
 }
-ai_modifiers = {
-	"aggression_level": 0.4,
-	"courage": 0.7
-}
-visual_modifiers = {
-	"element_color": Color.CYAN,
-	"translucent": true
-}
-ability_ids = ["ability_heal", "ability_shield"]
+ai_modifiers = {}
+visual_modifiers = {}
+element_type = "water"
+damage_bonus = 0.0
+resistance_bonus = 0.2
+status_effects = []
+environmental_interactions = {}
+

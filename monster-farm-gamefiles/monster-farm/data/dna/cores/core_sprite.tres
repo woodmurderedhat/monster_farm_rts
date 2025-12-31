@@ -1,29 +1,31 @@
-[gd_resource type="Resource" script_class="DNACoreResource"]
-resource_name = "sprite_core"
+[gd_resource type="Resource" script_class="DNACoreResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_core_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "core_sprite"
 display_name = "Sprite"
-tags = PackedStringArray("magical", "support", "utility")
-size_modifier = 0.5
-base_stats = {
-	"max_health": 35,
-	"attack": 4,
-	"defense": 3,
-	"speed": 16,
-	"intelligence": 14
+description = "A tiny magical fairy-like creature"
+rarity = 1
+tags = ["sprite", "fairy", "small", "magical"]
+incompatible_tags = []
+stat_modifiers = {
+	"magic": 20,
+	"speed": 15
 }
-stat_modifiers = {}
-ai_modifiers = {
-	"aggression_level": 0.3,
-	"courage": 0.5,
-	"pack_affinity": 0.8
-}
-work_affinity = {
-	"training": 0.9,
-	"farming": 0.7,
-	"feeding": 0.8
-}
+ai_modifiers = {}
 visual_modifiers = {
-	"body_color": Color.WEB_PURPLE,
+	"body_color": Color(0.627, 0.125, 0.941, 1),
 	"size": 0.5
 }
+body_type = 0
+movement_type = 1
+base_size = 0.5
+base_mass = 0.3
+base_health = 40
+base_stamina = 150
+base_speed = 140.0
+allowed_elements = ["water", "lightning"]
+ability_slots = 4
+mutation_capacity = 1

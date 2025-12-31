@@ -1,13 +1,25 @@
-[gd_resource type="Resource" script_class="Resource"]
-resource_name = "mutation_swift"
+[gd_resource type="Resource" script_class="DNAMutationResource" load_steps=2 format=3]
 
+[ext_resource type="Script" path="res://data/dna/dna_mutation_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
 id = "mutation_swift"
 display_name = "Swift"
-description = "Monster is much faster and more agile"
-rarity = 2
+description = "Increased speed and agility"
+rarity = 1
+tags = ["swift", "speed"]
+incompatible_tags = []
 stat_modifiers = {
-	"speed": 8,
-	"attack": 3,
-	"defense": -3,
-	"max_health": -10
+	"speed": 25,
+	"agility": 10
 }
+ai_modifiers = {}
+visual_modifiers = {}
+mutation_type = 0
+instability_value = 0.05
+override_rules = {}
+forced_visuals = {}
+can_cause_feral = false
+inheritance_chance = 0.5
+

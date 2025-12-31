@@ -1,20 +1,26 @@
-[gd_resource type="Resource" script_class="DNAElementResource"]
-resource_name = "element_nature"
+[gd_resource type="Resource" script_class="DNAElementResource" load_steps=2 format=3]
 
-id = "element_nature"
-display_name = "Nature"
-tags = PackedStringArray("nature", "poison", "regen")
+[ext_resource type="Script" path="res://data/dna/dna_element_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "elem_nature"
+display_name = "Nature Element"
+description = "Enhances health and growth"
+rarity = 1
+tags = ["nature", "growth", "healing"]
+incompatible_tags = []
 stat_modifiers = {
-	"max_health": 15,
-	"defense": 4,
-	"intelligence": 3
+	"max_health": 30,
+	"health_regen": 5
 }
-ai_modifiers = {
-	"aggression_level": 0.5,
-	"courage": 0.8
-}
+ai_modifiers = {}
 visual_modifiers = {
-	"element_color": Color.SPRING_GREEN,
+	"element_color": Color(0, 1, 0.5, 1),
 	"organic": true
 }
-ability_ids = ["ability_vine_whip", "ability_poison"]
+element_type = "nature"
+damage_bonus = 0.1
+resistance_bonus = 0.1
+status_effects = []
+environmental_interactions = {}
