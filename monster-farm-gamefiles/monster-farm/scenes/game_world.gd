@@ -14,6 +14,7 @@ var PlayerScene = preload("res://entities/player/player.tscn")
 
 # Dev toggle: set in Inspector to enable spawning test monsters in play builds
 @export var spawn_test_monsters: bool = false
+@export var test_monster_set: MonsterTestSet = preload("res://data/monsters/test_monsters.tres")
 
 ## Core Systems
 var monster_assembler: MonsterAssembler
@@ -190,57 +191,72 @@ func _on_raid_ended(success: bool):
 
 ## Spawn test monsters for development
 func _spawn_test_monsters() -> void:
-	# Load sample DNA resources
-	var core_wolf := load("res://data/dna/cores/core_wolf.tres")
-	var element_fire := load("res://data/dna/elements/element_fire.tres")
-	var behavior_aggressive := load("res://data/dna/behaviors/behavior_aggressive.tres")
-	var ability_bite := load("res://data/dna/abilities/ability_bite.tres")
-	var ability_fireball := load("res://data/dna/abilities/ability_fireball.tres")
+	var test_set: MonsterTestSet = test_monster_set
+	if not test_set:
+		test_set = load("res://data/monsters/test_monsters.tres") as MonsterTestSet
 	
-	if not core_wolf:
-		push_warning("Could not load test DNA resources")
+	if not test_set:
+		push_warning("No test monster set provided; falling back to default presets")
+		_spawn_legacy_test_monsters()
+		return
+
+	print("\n=== Spawning Test Monsters ===")
+	_spawn_test_team(test_set.team0, test_set.team0_positions, 0, "Player")
+	_spawn_test_team(test_set.team1, test_set.team1_positions, 1, "Enemy")
+	print("=== Test Monsters Ready ===\n")
+
+
+func _spawn_test_team(dna_stacks: Array[MonsterDNAStack], positions: Array[Vector2], team: int, name_prefix: String) -> void:
+	for index in dna_stacks.size():
+		var dna_stack: MonsterDNAStack = dna_stacks[index]
+		if not dna_stack:
+			push_warning("Empty DNA stack in test_monsters set for team %d at slot %d" % [team, index])
+			continue
+
+		var monster: Node2D = monster_assembler.assemble_monster(dna_stack, MonsterAssembler.SpawnContext.WORLD)
+		if not monster:
+			push_warning("Failed to assemble test monster for team %d at slot %d" % [team, index])
+			continue
+
+		var spawn_position: Vector2
+		if positions.size() > index:
+			spawn_position = positions[index]
+		else:
+			spawn_position = _get_default_test_spawn(team, index)
+
+		monster.global_position = spawn_position
+		monster.set_meta("team", team)
+		monster.name = "%s_%d" % [name_prefix, index]
+		monsters_container.add_child(monster)
+		combat_manager.register_combatant(monster)
+		EventBus.monster_spawned.emit(monster)
+		print("  Spawned: %s (Team %d)" % [monster.name, team])
+
+
+func _get_default_test_spawn(team: int, index: int) -> Vector2:
+	var base_x := 150.0 if team == 0 else 500.0
+	return Vector2(base_x, 200.0 + 100.0 * float(index))
+
+
+func _spawn_legacy_test_monsters() -> void:
+	var sprigkin_preset := load("res://data/monsters/preset_sprigkin_fire.tres") as MonsterDNAStack
+	var barkmaw_preset := load("res://data/monsters/preset_barkmaw_tank.tres") as MonsterDNAStack
+	var serpent_preset := load("res://data/monsters/preset_serpent_assassin.tres") as MonsterDNAStack
+	var sporespawn_preset := load("res://data/monsters/preset_sporespawn_support.tres") as MonsterDNAStack
+	
+	if not sprigkin_preset:
+		push_warning("Could not load monster presets")
 		return
 	
-	# Create a DNA stack
-	var dna_stack := MonsterDNAStack.new()
-	dna_stack.core = core_wolf
-	# append element to the `elements` array (MonsterDNAStack uses `elements`)
-	if element_fire:
-		dna_stack.elements.append(element_fire)
-	dna_stack.behavior = behavior_aggressive
-	dna_stack.abilities = [ability_bite, ability_fireball]
+	print("\n=== Spawning Legacy Test Monsters ===")
 	
-	# Spawn a few test monsters
-	for i in range(3):
-		var monster := monster_assembler.assemble_monster(dna_stack, MonsterAssembler.SpawnContext.WORLD)
-		if monster:
-			monster.global_position = Vector2(100 + i * 100, 200)
-			monster.set_meta("team", 0)  # Player team
-			monsters_container.add_child(monster)
-			combat_manager.register_combatant(monster)
-			EventBus.monster_spawned.emit(monster)
+	var legacy_team0 := [sprigkin_preset, barkmaw_preset]
+	var legacy_team1 := [serpent_preset, sporespawn_preset]
 	
-	# Spawn enemy monsters
-	var core_golem := load("res://data/dna/cores/core_golem.tres")
-	var behavior_defensive := load("res://data/dna/behaviors/behavior_defensive.tres")
+	_spawn_test_team(legacy_team0, [Vector2(150, 200), Vector2(150, 300)], 0, "Player")
+	_spawn_test_team(legacy_team1, [Vector2(500, 200), Vector2(500, 300)], 1, "Enemy")
 	
-	if core_golem:
-		var enemy_stack := MonsterDNAStack.new()
-		enemy_stack.core = core_golem
-		# set a single element for enemies — store as an array
-		if element_fire:
-			enemy_stack.elements = [element_fire]
-		enemy_stack.behavior = behavior_defensive
-		enemy_stack.abilities = [ability_bite]
-		
-		for i in range(2):
-			var enemy := monster_assembler.assemble_monster(enemy_stack, MonsterAssembler.SpawnContext.WORLD)
-			if enemy:
-				enemy.global_position = Vector2(400 + i * 80, 200)
-				enemy.set_meta("team", 1)  # Enemy team
-				monsters_container.add_child(enemy)
-				combat_manager.register_combatant(enemy)
-				EventBus.monster_spawned.emit(enemy)
+	print("=== Legacy Test Monsters Ready ===\n")
 
 
 ## Spawn a monster from a DNA stack

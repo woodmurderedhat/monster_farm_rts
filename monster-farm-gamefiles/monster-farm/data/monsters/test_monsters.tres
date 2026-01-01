@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MonsterTestSet" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://data/monsters/monster_test_set.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/monsters/preset_sprigkin_fire.tres" id="2_sprigkin"]
+[ext_resource type="Resource" path="res://data/monsters/preset_barkmaw_tank.tres" id="3_barkmaw"]
+[ext_resource type="Resource" path="res://data/monsters/preset_serpent_assassin.tres" id="4_serpent"]
+[ext_resource type="Resource" path="res://data/monsters/preset_sporespawn_support.tres" id="5_sporespawn"]
+[ext_resource type="Resource" path="res://data/monsters/test_sprigkin.tres" id="6_unstable"]
+
+[resource]
+script = ExtResource("1_script")
+team0 = Array[Resource("res://data/dna/monster_dna_stack.gd")]([ExtResource("2_sprigkin"), ExtResource("3_barkmaw")])
+team1 = Array[Resource("res://data/dna/monster_dna_stack.gd")]([ExtResource("4_serpent"), ExtResource("5_sporespawn"), ExtResource("6_unstable")])
+team0_positions = [Vector2(150, 200), Vector2(150, 300)]
+team1_positions = [Vector2(500, 200), Vector2(500, 300), Vector2(500, 400)]

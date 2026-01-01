@@ -79,25 +79,33 @@ func get_total_instability() -> float:
 	return clampf(total, 0.0, 1.0)
 
 
-## Get combined stat modifiers from all DNA parts
+## Get combined stat modifiers from all DNA parts, split into additive and multiplicative layers
 func get_combined_stat_modifiers() -> Dictionary:
-	var combined: Dictionary = {}
-	
+	var add_mods: Dictionary = {}
+	var mult_mods: Dictionary = {}
+
 	# Collect from all DNA parts
 	var all_parts: Array = [core, behavior]
 	all_parts.append_array(elements)
 	all_parts.append_array(abilities)
 	all_parts.append_array(mutations)
-	
+
 	for part in all_parts:
 		if part and part is BaseDNAResource:
 			for stat_name in part.stat_modifiers:
-				if combined.has(stat_name):
-					combined[stat_name] += part.stat_modifiers[stat_name]
+				var value = part.stat_modifiers[stat_name]
+				if typeof(value) == TYPE_DICTIONARY:
+					if value.has("add"):
+						add_mods[stat_name] = add_mods.get(stat_name, 0.0) + float(value.get("add", 0.0))
+					if value.has("mult"):
+						mult_mods[stat_name] = mult_mods.get(stat_name, 1.0) * float(value.get("mult", 1.0))
 				else:
-					combined[stat_name] = part.stat_modifiers[stat_name]
-	
-	return combined
+					add_mods[stat_name] = add_mods.get(stat_name, 0.0) + float(value)
+
+	return {
+		"add": add_mods,
+		"mult": mult_mods
+	}
 
 
 ## Check if the stack has a specific element type
@@ -212,3 +220,8 @@ func get_summary() -> String:
 		mutations.size()
 	]
 	return summary
+
+
+## Run validation using the shared validator
+func validate() -> Array[ValidationResult]:
+	return DNAValidator.validate_stack(self)

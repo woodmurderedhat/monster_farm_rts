@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MonsterDNAStack" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://data/dna/monster_dna_stack.gd" id="1_base"]
+[ext_resource type="Resource" path="res://data/dna/cores/core_serpent.tres" id="2_core"]
+[ext_resource type="Resource" path="res://data/dna/elements/element_shadow.tres" id="3_element1"]
+[ext_resource type="Resource" path="res://data/dna/elements/element_electric.tres" id="4_element2"]
+[ext_resource type="Resource" path="res://data/dna/behaviors/behavior_cunning.tres" id="5_behavior"]
+[ext_resource type="Resource" path="res://data/dna/abilities/ability_poison_spit.tres" id="6_ability1"]
+[ext_resource type="Resource" path="res://data/dna/abilities/ability_stun.tres" id="7_ability2"]
+[ext_resource type="Resource" path="res://data/dna/abilities/ability_zap.tres" id="8_ability3"]
+
+[resource]
+script = ExtResource("1_base")
+core = ExtResource("2_core")
+elements = Array[Resource("res://data/dna/dna_element_resource.gd")]([ExtResource("3_element1"), ExtResource("4_element2")])
+behavior = ExtResource("5_behavior")
+abilities = Array[Resource("res://data/dna/dna_ability_resource.gd")]([ExtResource("6_ability1"), ExtResource("7_ability2"), ExtResource("8_ability3")])
+mutations = Array[Resource("res://data/dna/dna_mutation_resource.gd")]([])

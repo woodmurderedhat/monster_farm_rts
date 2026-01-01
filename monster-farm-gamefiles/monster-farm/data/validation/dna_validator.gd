@@ -3,6 +3,8 @@
 extends Resource
 class_name DNAValidator
 
+const DEFAULT_MAX_ELEMENTS := 3
+
 
 ## Validate a complete DNA stack
 ## Returns array of ValidationResult
@@ -22,17 +24,21 @@ static func validate_stack(dna_stack: MonsterDNAStack) -> Array[ValidationResult
 	# Phase 3: Check tag compatibility
 	results.append_array(_validate_tag_compatibility(dna_stack))
 	
-	# Phase 4: Check ability requirements
+	# Phase 4: Detect duplicate abilities
+	results.append_array(_validate_duplicate_abilities(dna_stack))
+
+	# Phase 5: Check ability requirements
 	results.append_array(_validate_ability_requirements(dna_stack))
 	
-	# Phase 5: Check element compatibility
+	# Phase 6: Check element compatibility
 	results.append_array(_validate_element_compatibility(dna_stack))
 	
-	# Phase 6: Validate individual parts
+	# Phase 7: Validate individual parts
 	results.append_array(_validate_individual_parts(dna_stack))
 	
-	# Phase 7: Check mutation limits
+	# Phase 8: Check mutation limits and instability
 	results.append_array(_validate_mutation_limits(dna_stack))
+	results.append_array(_validate_instability_thresholds(dna_stack))
 	
 	return results
 
@@ -62,7 +68,7 @@ static func _validate_slot_limits(stack: MonsterDNAStack) -> Array[ValidationRes
 	# Default limits from core
 	var max_ability_slots := stack.core.ability_slots
 	var max_mutation_capacity := stack.core.mutation_capacity
-	var max_elements := 99
+	var max_elements := DEFAULT_MAX_ELEMENTS
 
 	# Apply mutation override_rules if present (take the highest allowed)
 	for mutation in stack.mutations:
@@ -98,6 +104,28 @@ static func _validate_slot_limits(stack: MonsterDNAStack) -> Array[ValidationRes
 	return results
 
 
+## Check that ability IDs are unique
+static func _validate_duplicate_abilities(stack: MonsterDNAStack) -> Array[ValidationResult]:
+	var results: Array[ValidationResult] = []
+	var seen_ids: Dictionary = {}
+
+	for ability in stack.abilities:
+		if ability == null:
+			continue
+		var ability_id: String = ability.ability_id
+		if ability_id.is_empty():
+			continue
+		if seen_ids.has(ability_id):
+			results.append(ValidationResult.error(
+				"Duplicate ability_id '%s' detected" % ability_id,
+				ability.id
+			))
+		else:
+			seen_ids[ability_id] = true
+
+	return results
+
+
 ## Check tag compatibility across all DNA parts
 static func _validate_tag_compatibility(stack: MonsterDNAStack) -> Array[ValidationResult]:
 	var results: Array[ValidationResult] = []
@@ -126,7 +154,7 @@ static func _validate_ability_requirements(stack: MonsterDNAStack) -> Array[Vali
 		if not ability.has_required_tags(all_tags):
 			results.append(ValidationResult.warning(
 				"Ability '%s' missing required tags - will be disabled" % ability.display_name,
-				ability.id
+				ability.ability_id
 			))
 	
 	return results
@@ -195,13 +223,30 @@ static func _validate_individual_parts(stack: MonsterDNAStack) -> Array[Validati
 static func _validate_mutation_limits(stack: MonsterDNAStack) -> Array[ValidationResult]:
 	var results: Array[ValidationResult] = []
 	
+	for mutation in stack.mutations:
+		if mutation and mutation.can_cause_feral:
+			results.append(ValidationResult.warning(
+				"Mutation '%s' can trigger feral state" % mutation.display_name,
+				mutation.id
+			))
+	
+	return results
+
+
+## Check instability thresholds that should escalate beyond warnings
+static func _validate_instability_thresholds(stack: MonsterDNAStack) -> Array[ValidationResult]:
+	var results: Array[ValidationResult] = []
+
 	var total_instability := stack.get_total_instability()
-	
-	if total_instability > 0.8:
-		results.append(ValidationResult.warning(
-			"High instability (%.0f%%) - monster may become feral" % (total_instability * 100)
+	if total_instability >= 0.95:
+		results.append(ValidationResult.error(
+			"Instability at %.0f%% - assembly may fail or spawn feral" % (total_instability * 100)
 		))
-	
+	elif total_instability >= 0.8:
+		results.append(ValidationResult.warning(
+			"Instability high (%.0f%%) - expect stat penalties" % (total_instability * 100)
+		))
+
 	return results
 
 

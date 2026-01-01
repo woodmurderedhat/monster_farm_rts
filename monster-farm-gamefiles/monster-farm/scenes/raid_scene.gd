@@ -10,11 +10,11 @@ extends Node2D
 
 @export var raid_id: String = "raid_goblin_incursion"
 
-var current_raid_data = {}
-var current_wave = 0
-var total_waves = 1
-var enemies_spawned = []
-var player_monsters = []
+var current_raid_data: RaidResource
+var current_wave: int = 0
+var total_waves: int = 1
+var enemies_spawned: Array[Node] = []
+var player_monsters: Array[Node] = []
 
 var assembler: MonsterAssembler
 var raid_manager: RaidManager
@@ -45,15 +45,17 @@ func _assign_systems():
 
 func load_raid(id: String):
 	var raid_path = "res://data/raids/%s.tres" % id
-	current_raid_data = load(raid_path)
-	if current_raid_data:
+	var raid_res: Resource = load(raid_path)
+	if raid_res and raid_res is RaidResource:
+		current_raid_data = raid_res
 		total_waves = current_raid_data.wave_count
-		boss_display_name = current_raid_data.get("boss_name", "")
-		var portrait_res = current_raid_data.get("boss_portrait", null)
+		boss_display_name = String(current_raid_data.boss_name) if current_raid_data.has("boss_name") else ""
+		var portrait_res: Texture2D = current_raid_data.boss_portrait if current_raid_data.has("boss_portrait") else null
 		if portrait_res:
 			boss_portrait_texture = portrait_res
 		EventBus.raid_started.emit(current_raid_data)
 	else:
+		current_raid_data = null
 		print("Failed to load raid: %s" % id)
 
 func setup_teams():
@@ -82,8 +84,8 @@ func start_next_wave():
 	if current_raid_data and current_raid_data.enemy_pool:
 		var enemy_positions = [Vector2(650, 250), Vector2(700, 250), Vector2(750, 250), Vector2(800, 250)]
 		for i in range(min(current_raid_data.enemy_pool.size(), 4)):
-			var enemy_id = current_raid_data.enemy_pool[i]
-			var spawn_stack = MonsterDNAStack.new()
+			var enemy_id: String = current_raid_data.enemy_pool[i]
+			var spawn_stack: MonsterDNAStack = MonsterDNAStack.new()
 			spawn_stack.core = load("res://data/dna/cores/%s.tres" % enemy_id)
 
 			var spawned = assembler.assemble_monster(spawn_stack, MonsterAssembler.SpawnContext.RAID)
@@ -138,35 +140,35 @@ func complete_raid(success: bool):
 
 func _has_living_team(team: Node) -> bool:
 	for child in team.get_children():
-		var health := child.get_node_or_null("HealthComponent") as HealthComponent
+		var health: HealthComponent = child.get_node_or_null("HealthComponent") as HealthComponent
 		if health and health.is_alive():
 			return true
 	return false
 
 func _clean_dead(team: Node) -> void:
 	for child in team.get_children():
-		var health := child.get_node_or_null("HealthComponent") as HealthComponent
+		var health: HealthComponent = child.get_node_or_null("HealthComponent") as HealthComponent
 		if health and not health.is_alive():
 			child.queue_free()
 
 func _spawn_boss_if_needed():
 	if boss_target:
 		return
-	var boss_id: String = current_raid_data.get("boss_id", "")
+	var boss_id: String = String(current_raid_data.boss_id) if current_raid_data.has("boss_id") else ""
 	if boss_id.is_empty():
 		return
-	var spawn_stack := MonsterDNAStack.new()
+	var spawn_stack: MonsterDNAStack = MonsterDNAStack.new()
 	spawn_stack.core = load("res://data/dna/cores/%s.tres" % boss_id)
-	var behavior_id: String = current_raid_data.get("boss_behavior_id", "")
+	var behavior_id: String = String(current_raid_data.boss_behavior_id) if current_raid_data.has("boss_behavior_id") else ""
 	if not behavior_id.is_empty():
 		spawn_stack.behavior = load("res://data/dna/behaviors/%s.tres" % behavior_id)
-	var ability_ids: Array = current_raid_data.get("boss_ability_ids", [])
+	var ability_ids: Array = current_raid_data.boss_ability_ids if current_raid_data.has("boss_ability_ids") else []
 	if ability_ids:
 		for a in ability_ids:
-			var ability_res = load("res://data/dna/abilities/%s.tres" % a)
+			var ability_res: Resource = load("res://data/dna/abilities/%s.tres" % a)
 			if ability_res:
 				spawn_stack.abilities.append(ability_res)
-	var boss = assembler.assemble_monster(spawn_stack, MonsterAssembler.SpawnContext.RAID)
+	var boss: Node2D = assembler.assemble_monster(spawn_stack, MonsterAssembler.SpawnContext.RAID)
 	if boss:
 		boss.global_position = Vector2(720, 200)
 		boss.set_meta("team", 1)
@@ -176,7 +178,7 @@ func _spawn_boss_if_needed():
 		if combat_manager:
 			combat_manager.register_combatant(boss)
 		if boss_name_label:
-			boss_name_label.text = boss_display_name if not boss_display_name.is_empty() else boss.name
+			boss_name_label.text = boss_display_name if not boss_display_name.is_empty() else String(boss.name)
 		if boss_portrait and boss_portrait_texture:
 			boss_portrait.texture = boss_portrait_texture
 
@@ -190,10 +192,10 @@ func _update_boss_health_bar():
 		if boss_portrait:
 			boss_portrait.texture = null
 		return
-	var health := boss_target.get_node_or_null("HealthComponent") as HealthComponent
+	var health: HealthComponent = boss_target.get_node_or_null("HealthComponent") as HealthComponent
 	if health:
 		boss_health_bar.visible = true
-		var max_hp := max(health.max_hp, 1)
+		var max_hp: int = int(max(health.max_hp, 1))
 		boss_health_bar.value = float(health.current_hp) / float(max_hp)
 		if boss_name_label:
 			boss_name_label.text = boss_target.name
@@ -204,4 +206,5 @@ func _update_hud():
 	if wave_label:
 		wave_label.text = "Wave %d / %d" % [max(1, current_wave), max(1, total_waves)]
 	if boss_health_bar:
-		boss_health_bar.visible = not String(current_raid_data.get("boss_id", "")).is_empty()
+		var boss_id: String = String(current_raid_data.boss_id) if current_raid_data and current_raid_data.has("boss_id") else ""
+		boss_health_bar.visible = not boss_id.is_empty()

@@ -85,39 +85,69 @@ func _initialize_components(monster: Node2D, dna_stack: MonsterDNAStack) -> void
 ## Build the stat block from DNA layers
 func _assemble_stats(dna_stack: MonsterDNAStack, context: SpawnContext) -> Dictionary:
 	var stats: Dictionary = {}
-	
+
 	# Base stats from core
 	if dna_stack.core:
-		stats["max_health"] = dna_stack.core.base_health
-		stats["max_stamina"] = dna_stack.core.base_stamina
-		stats["speed"] = dna_stack.core.base_speed
-		stats["size"] = dna_stack.core.base_size
-		stats["mass"] = dna_stack.core.base_mass
-	
+		stats = {
+			"max_health": dna_stack.core.base_health,
+			"max_stamina": dna_stack.core.base_stamina,
+			"speed": dna_stack.core.base_speed,
+			"size": dna_stack.core.base_size,
+			"mass": dna_stack.core.base_mass
+		}
+
 	# Apply modifiers from all DNA parts
 	var modifiers := dna_stack.get_combined_stat_modifiers()
-	for stat_name in modifiers:
-		if stats.has(stat_name):
-			stats[stat_name] += modifiers[stat_name]
-		else:
-			stats[stat_name] = modifiers[stat_name]
-	
+	var add_mods: Dictionary = modifiers.get("add", {})
+	var mult_mods: Dictionary = modifiers.get("mult", {})
+
+	for stat_name in add_mods.keys():
+		stats[stat_name] = stats.get(stat_name, 0.0) + add_mods[stat_name]
+
+	for stat_name in mult_mods.keys():
+		var base_value: float = stats.get(stat_name, 0.0)
+		if base_value == 0.0:
+			base_value = 1.0  # default baseline for pure multipliers
+		stats[stat_name] = base_value * mult_mods[stat_name]
+
 	# Apply instability penalties
 	var instability := dna_stack.get_total_instability()
 	if instability > 0.5:
 		var penalty := (instability - 0.5) * 0.2  # Up to 10% penalty
 		for stat_name in stats:
 			if typeof(stats[stat_name]) in [TYPE_INT, TYPE_FLOAT]:
-				stats[stat_name] *= (1.0 - penalty)
-	
+				stats[stat_name] = maxf(0.0, stats[stat_name] * (1.0 - penalty))
+
 	# Apply context modifiers
 	match context:
 		SpawnContext.RAID:
-			stats["max_health"] = stats.get("max_health", 100) * 1.2
+			stats["max_health"] = stats.get("max_health", 100.0) * 1.2
 		SpawnContext.FARM:
 			stats["stress_rate"] = stats.get("stress_rate", 1.0) * 0.8
-	
+
+	_apply_stat_defaults(stats)
+	_clamp_stat_values(stats)
+
 	return stats
+
+
+## Ensure derived stats and sane defaults exist
+func _apply_stat_defaults(stats: Dictionary) -> void:
+	stats["max_health"] = maxf(stats.get("max_health", 100.0), 1.0)
+	stats["max_stamina"] = maxf(stats.get("max_stamina", 100.0), 0.0)
+	stats["speed"] = maxf(stats.get("speed", 80.0), 0.0)
+	stats["stamina_regen"] = stats.get("stamina_regen", 5.0)
+	stats["mass"] = maxf(stats.get("mass", 1.0), 0.1)
+	stats["size"] = maxf(stats.get("size", 1.0), 0.1)
+	stats["stress_rate"] = stats.get("stress_rate", 1.0)
+
+
+## Clamp stats to avoid invalid numbers
+func _clamp_stat_values(stats: Dictionary) -> void:
+	for stat_name in stats.keys():
+		if typeof(stats[stat_name]) in [TYPE_INT, TYPE_FLOAT]:
+			if is_nan(stats[stat_name]) or is_inf(stats[stat_name]):
+				stats[stat_name] = 0.0
 
 
 ## Apply assembled stats to the monster
@@ -133,42 +163,7 @@ func _apply_stats(monster: Node2D, stat_block: Dictionary) -> void:
 
 ## Configure AI based on DNA behavior
 func _configure_ai(monster: Node2D, dna_stack: MonsterDNAStack, _context: SpawnContext) -> void:
-	# Build base ai_config from behavior if present, otherwise defaults
-	var ai_config: Dictionary = {}
-	if dna_stack.behavior:
-		ai_config = {
-			"aggression": dna_stack.behavior.aggression,
-			"loyalty": dna_stack.behavior.loyalty,
-			"curiosity": dna_stack.behavior.curiosity,
-			"stress_tolerance": dna_stack.behavior.stress_tolerance,
-			"combat_roles": dna_stack.behavior.combat_roles.duplicate(),
-			"work_affinity": dna_stack.behavior.work_affinity.duplicate()
-		}
-	else:
-		ai_config = {
-			"aggression": 0.5,
-			"loyalty": 0.5,
-			"curiosity": 0.5,
-			"stress_tolerance": 0.5,
-			"combat_roles": [],
-			"work_affinity": {}
-		}
-
-	# Helper to merge ai_modifiers from a DNA part
-	var _merge_ai_mods_from = func(part) -> void:
-		if part and part is BaseDNAResource:
-			for key in part.ai_modifiers:
-				ai_config[key] = part.ai_modifiers[key]
-
-	# Merge AI modifiers from core, elements, abilities, behavior and mutations
-	_merge_ai_mods_from.call(dna_stack.core)
-	for element in dna_stack.elements:
-		_merge_ai_mods_from.call(element)
-	_merge_ai_mods_from.call(dna_stack.behavior)
-	for ability in dna_stack.abilities:
-		_merge_ai_mods_from.call(ability)
-	for mutation in dna_stack.mutations:
-		_merge_ai_mods_from.call(mutation)
+	var ai_config: Dictionary = dna_stack.get_ai_configuration()
 
 	# Store on monster meta for backward compatibility
 	monster.set_meta("ai_config", ai_config)
@@ -230,6 +225,7 @@ func _apply_visuals(monster: Node2D, dna_stack: MonsterDNAStack) -> void:
 	for mutation in dna_stack.mutations:
 		if mutation:
 			mutation_names.append(mutation.id)
+			visual_data.merge(mutation.visual_modifiers, true)
 			visual_data.merge(mutation.forced_visuals, true)
 	
 	if not mutation_names.is_empty():

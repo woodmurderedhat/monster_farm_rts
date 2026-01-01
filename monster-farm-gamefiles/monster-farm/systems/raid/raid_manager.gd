@@ -245,4 +245,3 @@ static func create_raid_config(
 		"waves": wave_data,
 		"target_position": target_position
 	}
-

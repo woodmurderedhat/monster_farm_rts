@@ -23,6 +23,10 @@ var is_paused: bool = false
 ## Current farm data
 var current_farm: Dictionary = {}
 
+## Zone progression tracking
+var zones_visited: Array[String] = []
+var current_zone: String = ""
+
 ## Player's monster collection
 var owned_monsters: Array[Resource] = []
 
@@ -68,6 +72,8 @@ func start_new_game() -> void:
 	}
 	owned_monsters.clear()
 	dna_collection.clear()
+	zones_visited.clear()
+	current_zone = ""
 	player_state = {
 		"gold": 0,
 		"total_xp": 0,

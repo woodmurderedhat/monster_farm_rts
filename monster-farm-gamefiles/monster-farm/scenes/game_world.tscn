@@ -6,6 +6,7 @@
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1")
+spawn_test_monsters = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 240)

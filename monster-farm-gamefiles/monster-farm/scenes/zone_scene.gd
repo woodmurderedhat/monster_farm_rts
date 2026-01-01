@@ -10,7 +10,7 @@ extends Node2D
 var zone_manager: ZoneManager
 var combat_manager: CombatManager
 var assembler: MonsterAssembler
-var current_zone_data = {}
+var current_zone_data: Resource
 var respawn_timer: Timer
 var respawn_interval: float = 5.0
 var zone_cleared_emitted: bool = false
@@ -37,8 +37,9 @@ func load_zone(id: String):
 	current_zone_data = load(zone_path)
 
 	if current_zone_data:
-		zone_label.text = current_zone_data.display_name
-		respawn_interval = current_zone_data.get("spawn_rate", respawn_interval)
+		zone_label.text = String(current_zone_data.display_name) if current_zone_data.has("display_name") else zone_id
+		if current_zone_data.has("spawn_rate"):
+			respawn_interval = float(current_zone_data.spawn_rate)
 		if zone_manager and zone_manager.has_method("enter_zone"):
 			zone_manager.enter_zone(id)
 		if GameState:
@@ -81,16 +82,18 @@ func complete_zone():
 		rewards_granted = true
 
 func spawn_enemy_wave():
-	if not (current_zone_data and current_zone_data.monster_pool):
+	if not (current_zone_data and current_zone_data.has("monster_pool")):
 		return
 	respawn_cycle += 1
-	var enemy_positions = [Vector2(600, 200), Vector2(650, 200), Vector2(700, 200), Vector2(750, 200), Vector2(800, 200)]
-	var difficulty := int(current_zone_data.get("difficulty_level", 1))
-	var count := clamp(int(2 + difficulty + respawn_cycle * 0.5), 2, enemy_positions.size())
+	var enemy_positions: Array[Vector2] = [Vector2(600, 200), Vector2(650, 200), Vector2(700, 200), Vector2(750, 200), Vector2(800, 200)]
+	var difficulty: int = int(current_zone_data.difficulty_level) if current_zone_data.has("difficulty_level") else 1
+	var count: int = int(clamp(int(2 + difficulty + respawn_cycle * 0.5), 2, enemy_positions.size()))
 	for i in range(count):
-		var pool := current_zone_data.monster_pool
-		var enemy_core = pool[(i + respawn_cycle) % pool.size()]
-		var spawn_stack = MonsterDNAStack.new()
+		var pool: Array = current_zone_data.monster_pool if current_zone_data.has("monster_pool") else []
+		if pool.is_empty():
+			continue
+		var enemy_core: String = pool[(i + respawn_cycle) % pool.size()]
+		var spawn_stack: MonsterDNAStack = MonsterDNAStack.new()
 		spawn_stack.core = load("res://data/dna/cores/%s.tres" % enemy_core)
 
 		var assembled = assembler.assemble_monster(spawn_stack, MonsterAssembler.SpawnContext.WORLD)

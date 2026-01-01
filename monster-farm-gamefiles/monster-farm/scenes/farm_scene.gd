@@ -74,11 +74,23 @@ func _load_build_options():
 				var res_path := "res://data/buildings/%s" % fn
 				var res := load(res_path)
 				if res:
+					var res_id = res.get("id")
+					if res_id == null or String(res_id).is_empty():
+						res_id = fn.get_basename()
+					var res_name = res.get("display_name")
+					if res_name == null or String(res_name).is_empty():
+						res_name = fn.get_basename()
+					var res_job = res.get("job_type_id")
+					if res_job == null or String(res_job).is_empty():
+						res_job = "job_build"
+					var res_pos = res.get("default_position")
+					if typeof(res_pos) != TYPE_VECTOR2:
+						res_pos = Vector2.ZERO
 					options.append({
-						"id": res.get("id", fn.get_basename()),
-						"display_name": res.get("display_name", fn.get_basename()),
-						"job_type_id": res.get("job_type_id", "job_build"),
-						"position": res.get("default_position", Vector2.ZERO)
+						"id": res_id,
+						"display_name": res_name,
+						"job_type_id": res_job,
+						"position": res_pos
 					})
 			fn = dir.get_next()
 
@@ -150,7 +162,7 @@ func _refresh_farm_ui():
 	farm_panel.set_build_options(build_options)
 
 func _on_build_requested(building_id: String):
-	var def := _resolve_building_definition(building_id)
+	var def: Dictionary = _resolve_building_definition(building_id)
 	if def.is_empty():
 		return
 	if not _can_afford(def.get("cost", {})):
@@ -158,7 +170,7 @@ func _on_build_requested(building_id: String):
 		return
 	var placement_type: String = def.get("placement_type", "structure")
 	if placement_type in ["wall", "gate", "trap"]:
-		var pos := def.get("position", _compute_build_position(def))
+		var pos: Vector2 = def.get("position", _compute_build_position(def))
 		pos = _snap_position(def, pos)
 		if _is_overlapping(pos):
 			print("Cannot place %s; overlaps another structure" % def.get("display_name", building_id))
@@ -178,7 +190,7 @@ func _unhandled_input(event):
 			pending_build_def.clear()
 			return
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			var pos := _snap_position(pending_build_def, event.position)
+			var pos: Vector2 = _snap_position(pending_build_def, event.position)
 			if _is_overlapping(pos):
 				print("Cannot place %s; overlaps another structure" % pending_build_def.get("display_name", pending_build_def.get("id", "")))
 				return
@@ -278,12 +290,31 @@ func _resolve_building_definition(entry) -> Dictionary:
 	var res_path := "res://data/buildings/%s.tres" % entry_id
 	var res := load(res_path)
 	if res:
-		def["display_name"] = res.get("display_name", def.get("display_name", entry_id.capitalize()))
-		def["job_type_id"] = res.get("job_type_id", def.get("job_type_id", "job_build"))
-		def["position"] = def.get("position", res.get("default_position", Vector2(100 + building_defs.size() * 80, 100)))
-		def["placement_type"] = res.get("placement_type", "structure")
-		def["snap_step"] = res.get("snap_step", Vector2(40, 0))
-		def["cost"] = res.get("cost", {})
+		var display_name = res.get("display_name")
+		if display_name == null or String(display_name).is_empty():
+			display_name = def.get("display_name", entry_id.capitalize())
+		var job_type = res.get("job_type_id")
+		if job_type == null or String(job_type).is_empty():
+			job_type = def.get("job_type_id", "job_build")
+		var default_pos = res.get("default_position")
+		if typeof(default_pos) != TYPE_VECTOR2:
+			default_pos = Vector2(100 + building_defs.size() * 80, 100)
+		var placement_type = res.get("placement_type")
+		if placement_type == null or String(placement_type).is_empty():
+			placement_type = "structure"
+		var snap_step = res.get("snap_step")
+		if typeof(snap_step) != TYPE_VECTOR2:
+			snap_step = Vector2(40, 0)
+		var cost = res.get("cost")
+		if typeof(cost) != TYPE_DICTIONARY:
+			cost = {}
+
+		def["display_name"] = display_name
+		def["job_type_id"] = job_type
+		def["position"] = def.get("position", default_pos)
+		def["placement_type"] = placement_type
+		def["snap_step"] = snap_step
+		def["cost"] = cost
 	else:
 		def["display_name"] = def.get("display_name", entry_id.capitalize())
 		def["job_type_id"] = def.get("job_type_id", "job_build")

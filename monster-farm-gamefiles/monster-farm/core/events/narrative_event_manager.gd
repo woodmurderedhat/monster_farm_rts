@@ -162,14 +162,19 @@ func _apply_choice_outcome(_outcome: String) -> void:
 
 ## Get game state for condition checking
 func _get_game_state() -> Dictionary:
-	if GameState:
-		return {
-			"player_level": GameState.player_level,
-			"zones_visited": GameState.zones_visited,
-			"monsters_owned": GameState.owned_monsters.size(),
-			"current_zone": GameState.current_zone
-		}
-	return {}
+	if not GameState:
+		return {}
+
+	var level: int = 1
+	if GameState.player_state.has("level"):
+		level = int(GameState.player_state["level"])
+
+	return {
+		"player_level": level,
+		"zones_visited": GameState.zones_visited,
+		"monsters_owned": GameState.owned_monsters.size(),
+		"current_zone": GameState.current_zone
+	}
 
 ## Serialize for save system
 func serialize() -> Dictionary:

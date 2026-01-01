@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterDNAStack" load_steps=7 format=3]
+[gd_resource type="Resource" script_class="MonsterDNAStack" load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://data/dna/monster_dna_stack.gd" id="1_base"]
 [ext_resource type="Resource" path="res://data/dna/cores/core_sprigkin.tres" id="2_core"]
@@ -6,7 +6,6 @@
 [ext_resource type="Resource" path="res://data/dna/behaviors/behavior_aggressive.tres" id="4_behavior"]
 [ext_resource type="Resource" path="res://data/dna/abilities/ability_bite.tres" id="5_ability1"]
 [ext_resource type="Resource" path="res://data/dna/abilities/ability_fireball.tres" id="6_ability2"]
-[ext_resource type="Resource" path="res://data/dna/mutations/mutation_volatile.tres" id="7_mutation"]
 
 [resource]
 script = ExtResource("1_base")
@@ -14,4 +13,4 @@ core = ExtResource("2_core")
 elements = Array[Resource("res://data/dna/dna_element_resource.gd")]([ExtResource("3_element")])
 behavior = ExtResource("4_behavior")
 abilities = Array[Resource("res://data/dna/dna_ability_resource.gd")]([ExtResource("5_ability1"), ExtResource("6_ability2")])
-mutations = Array[Resource("res://data/dna/dna_mutation_resource.gd")]([ExtResource("7_mutation")])
+mutations = Array[Resource("res://data/dna/dna_mutation_resource.gd")]([])
