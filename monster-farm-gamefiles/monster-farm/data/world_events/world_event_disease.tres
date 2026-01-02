@@ -1,4 +1,7 @@
-[gd_resource type="Resource" script_class="Resource"]
+
+[gd_resource type="Resource" format=2]
+
+[resource]
 resource_name = "world_event_disease"
 
 id = "world_event_disease"
@@ -7,8 +10,8 @@ description = "Sickness spreads through farms"
 duration_days = 6
 impact = "negative"
 affected_stats = {
-	"health_loss": 0.1,
-	"morale": -0.4,
-	"production": -0.3
+"health_loss": 0.1,
+"morale": -0.4,
+"production": -0.3
 }
 phases = ["outbreak", "spread", "containment", "recovery"]

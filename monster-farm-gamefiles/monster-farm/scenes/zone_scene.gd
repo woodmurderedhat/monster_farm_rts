@@ -1,6 +1,8 @@
 extends Node2D
 ## Zone scene controller
 
+@export var farm_scene_path: String = "res://scenes/farm_scene.tscn"
+
 @onready var zone_label = $ZoneEnvironment/ZoneLabel
 @onready var enemy_team = $EnemyTeam
 @onready var player_team = $PlayerTeam
@@ -113,3 +115,8 @@ func _setup_respawn_timer():
 
 func _on_respawn_timeout():
 	spawn_enemy_wave()
+
+func return_to_farm():
+	GameState.change_state(GameState.State.FARM_SIMULATION)
+	if get_tree():
+		get_tree().change_scene_to_file(farm_scene_path)

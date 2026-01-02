@@ -30,6 +30,10 @@ var entity: Node2D
 func _ready() -> void:
 	entity = get_parent() as Node2D
 	_initialize_from_meta()
+	print("[DEBUG] HealthComponent initialized for node: %s" % get_parent().name)
+	print("[DEBUG] Parent Node Children:")
+	for child in get_parent().get_children():
+		print("[DEBUG] Child: %s (Type: %s)" % [child, child.get_class()])
 
 
 ## Initialize health from entity metadata (set by MonsterAssembler)
@@ -43,10 +47,12 @@ func _initialize_from_meta() -> void:
 ## Take damage from a source
 func take_damage(amount: float, source: Node = null) -> void:
 	if is_invulnerable or current_health <= 0:
+		print("[DEBUG] Damage ignored: Invulnerable or health already 0.")
 		return
 	
 	var actual_damage := maxf(0, amount)
 	current_health = maxf(0, current_health - actual_damage)
+	print("[DEBUG] Damage taken: %.2f, Current Health: %.2f" % [actual_damage, current_health])
 	
 	damage_taken.emit(actual_damage, source)
 	health_changed.emit(current_health, max_health)

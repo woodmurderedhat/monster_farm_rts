@@ -107,4 +107,3 @@ func _on_died() -> void:
 	set_physics_process(false)
 	set_process(false)
 	# Could play death animation here
-

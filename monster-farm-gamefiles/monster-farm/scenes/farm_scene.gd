@@ -1,10 +1,15 @@
 extends Node2D
 ## Farm scene controller
 
+@export var zone_scene_path: String = "res://scenes/zone_scene.tscn"
+
+var PlayerScene := preload("res://entities/player/player.tscn")
+
 @onready var buildings = $Buildings
 @onready var resources = $Resources
 @onready var monsters = $Monsters
 @onready var farm_panel = $FarmUI/FarmPanel
+@onready var player_spawn: Node2D = get_node_or_null("PlayerSpawn")
 
 @export var max_monsters_to_spawn: int = 6
 
@@ -15,16 +20,24 @@ var built_structures: Array = []
 var build_options: Array = []
 var pending_build_def: Dictionary = {}
 var is_placing: bool = false
+var player: Player
 
 func _ready():
 	GameState.change_state(GameState.State.FARM_SIMULATION)
 	_assign_systems()
+	_spawn_player()
 	_load_building_definitions()
 	_load_build_options()
 	load_farm()
 	setup_buildings()
 	setup_monsters()
 	_refresh_farm_ui()
+
+func transition_to_zone():
+	# Transition to exploration zone; keeps farm data in GameState.
+	GameState.change_state(GameState.State.WORLD_EXPLORATION)
+	if get_tree():
+		get_tree().change_scene_to_file(zone_scene_path)
 
 func _assign_systems():
 	assembler = get_node_or_null("/root/GameWorld/MonsterAssembler")
@@ -35,6 +48,21 @@ func _assign_systems():
 	if not farm_manager:
 		farm_manager = FarmManager.new()
 		add_child(farm_manager)
+
+
+func _spawn_player():
+	if player:
+		return
+	if not PlayerScene:
+		return
+
+	player = PlayerScene.instantiate()
+	player.name = "Player"
+	var spawn_position := Vector2(200, 200)
+	if player_spawn:
+		spawn_position = player_spawn.global_position
+	player.global_position = spawn_position
+	add_child(player)
 
 func load_farm():
 	if GameState and GameState.current_farm:
@@ -151,6 +179,12 @@ func setup_monsters():
 			monsters.add_child(spawned)
 			if farm_manager:
 				farm_manager.register_monster(spawned)
+				print("[DEBUG] Monster spawned and registered: %s" % spawned)
+
+	for child in monsters.get_children():
+		print("[DEBUG] Monster Node: %s" % child)
+		for component in child.get_children():
+			print("[DEBUG] Component: %s (Type: %s)" % [component, component.get_class()])
 
 func _refresh_farm_ui():
 	if not farm_panel:

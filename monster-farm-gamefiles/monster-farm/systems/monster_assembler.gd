@@ -65,12 +65,14 @@ func assemble_monster(dna_stack: MonsterDNAStack, context: SpawnContext = SpawnC
 
 ## Load the base monster scene
 func _load_base_scene() -> Node2D:
-	if not ResourceLoader.exists(MONSTER_BASE_SCENE):
-		push_error("MonsterAssembler: Base scene not found at %s — cannot assemble monster." % MONSTER_BASE_SCENE)
-		return null
-
-	var scene := load(MONSTER_BASE_SCENE) as PackedScene
-	return scene.instantiate() as Node2D
+	var scene = preload(MONSTER_BASE_SCENE).instantiate() as Node2D
+	if scene:
+		print("[DEBUG] Base monster scene loaded successfully.")
+		for child in scene.get_children():
+			print("[DEBUG] Child in base scene: %s (Type: %s)" % [child.name, typeof(child)])
+	else:
+		print("[DEBUG] Failed to load base monster scene.")
+	return scene
 
 
 ## Initialize monster components with DNA data
@@ -183,6 +185,12 @@ func _assign_abilities(monster: Node2D, dna_stack: MonsterDNAStack) -> void:
 		if ability == null:
 			continue
 
+		# Validate scaling_stats before duplication
+		var valid_scaling_stats = []
+		for stat in ability.scaling_stats:
+			if typeof(stat) in [TYPE_INT, TYPE_REAL, TYPE_STRING]:
+				valid_scaling_stats.append(stat)
+
 		var ability_data: Dictionary = {
 			"id": ability.ability_id,
 			"display_name": ability.display_name,
@@ -192,7 +200,7 @@ func _assign_abilities(monster: Node2D, dna_stack: MonsterDNAStack) -> void:
 			"targeting_type": ability.targeting_type,
 			"base_power": ability.base_power,
 			"aoe_radius": ability.aoe_radius,
-			"scaling_stats": ability.scaling_stats.duplicate(),
+			"scaling_stats": valid_scaling_stats,
 			"enabled": ability.has_required_tags(available_tags)
 		}
 		abilities_data.append(ability_data)

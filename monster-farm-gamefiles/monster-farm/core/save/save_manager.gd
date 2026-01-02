@@ -8,7 +8,7 @@ const SAVE_VERSION := "0.1.0"
 const SAVE_FOLDER_PREFIX := "save_slot_"
 
 func _ready() -> void:
-	pass
+	print("[DEBUG] SaveManager initialized.")
 
 func _get_slot_path(slot: int) -> String:
 	return "%s%s%d/" % ["user://", SAVE_FOLDER_PREFIX, slot]
@@ -123,8 +123,11 @@ func load_slot(slot: int = 0) -> bool:
 	# Check save version compatibility
 	if meta.has("save_version") and meta["save_version"] != SAVE_VERSION:
 		push_warning("Save version mismatch: %s != %s. Attempting best-effort load." % [meta["save_version"], SAVE_VERSION])
+
+	var world_state = _read_json(base_path + "world_state.json")
 	var farm_state = _read_json(base_path + "farm_state.json")
 	var player_state = _read_json(base_path + "player_state.json")
+	var mod_state = _read_json(base_path + "mod_state.json")
 
 	# Restore minimal pieces into GameState if available
 	var gs = get_node_or_null("/root/GameState")
@@ -149,6 +152,24 @@ func load_slot(slot: int = 0) -> bool:
 					else:
 						push_warning("Failed to restore dna resource, keeping raw data")
 						gs.dna_collection.append(ddata)
+			# Restore world state if present
+			if world_state != null:
+				gs.world_state = world_state
+		# Restore mod state if ModLoader is present
+		var mod_loader := get_node_or_null("/root/ModLoader")
+		if mod_loader and mod_state != null:
+			if mod_loader.has_method("set_mod_state"):
+				mod_loader.call("set_mod_state", mod_state)
+			elif mod_loader.has("mod_state"):
+				mod_loader.mod_state = mod_state
+
+		# Forward world state into WorldManager if available
+		var world_mgr := get_node_or_null("/root/WorldManager")
+		if world_mgr and world_state != null:
+			if world_mgr.has_method("load_world_state"):
+				world_mgr.call("load_world_state", world_state)
+			elif world_mgr.has_method("set_state"):
+				world_mgr.call("set_state", world_state)
 
 	# Emit event if EventBus autoload is present
 	var eb = get_node_or_null("/root/EventBus")
@@ -176,19 +197,12 @@ func _read_json(path: String) -> Variant:
 		return null
 	var contents := file.get_as_text()
 	file.close()
-	var res: Variant = JSON.parse_string(contents)
-	if typeof(res) == TYPE_DICTIONARY:
-		# Older Godot versions might return a Dictionary
-		if res.has("error") and res.has("result"):
-			if res.error != OK:
-				push_error("JSON parse error for %s" % path)
-				return null
-			return res.result
-	# Expect JSONParseResult style
-	if res.error != OK:
-		push_error("JSON parse error for %s (code %d)" % [path, res.error])
+	var parser := JSON.new()
+	var err := parser.parse(contents)
+	if err != OK:
+		push_error("JSON parse error for %s (code %d)" % [path, err])
 		return null
-	return res.result
+	return parser.data
 
 func _serialize_any(x: Variant) -> Variant:
 	if typeof(x) == TYPE_DICTIONARY:

@@ -21,6 +21,11 @@ EventBus="*res://core/globals/event_bus.gd"
 GameState="*res://core/globals/game_state.gd"
 SaveManager="*res://core/save/save_manager.gd"
 
+[debug]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="res://logs/godot.log"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dna_tools/plugin.cfg")
@@ -82,3 +87,7 @@ zoom_out={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[run]
+
+main_scene="res://scenes/farm_scene.tscn"

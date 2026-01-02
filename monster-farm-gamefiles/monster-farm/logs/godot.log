@@ -1,0 +1,250 @@
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+[DEBUG] Loading IntegrationTestSuite...
+SCRIPT ERROR: Parse Error: Preload file "res://entities/monster/job_component.gd" does not exist.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:10)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve script "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:13)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve script "res://data/dna/dna_element_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve script "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:15)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve script "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:16)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:92)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:92)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_element_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:93)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "element" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:93)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:94)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:94)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:95)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:95)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "core".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:102)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "elements".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:103)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "behavior".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:104)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "abilities".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:105)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "validate_stack".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:108)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "has_blocking_errors".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:111)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:143)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:143)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_element_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:144)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "element" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:144)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:145)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:145)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:146)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability1" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:146)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:147)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability2" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:147)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "assemble_monster".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:156)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:194)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:194)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:195)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:195)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:196)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:196)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:240)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:240)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:241)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:241)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:242)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:242)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:297)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:297)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_element_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:298)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "element" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:298)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:299)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:299)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:300)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability1" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:300)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:301)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability2" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:301)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_core_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:349)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:349)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_behavior_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:350)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:350)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not parse script from "res://data/dna/dna_ability_resource.gd".
+   at: GDScript::reload (res://tools/integration_test_suite.gd:351)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:351)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "job_comp" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:449)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+ERROR: Failed to load script "res://tools/integration_test_suite.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:3041)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _initialize (res://tools/headless_test_runner.gd:16)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:16)
+[DEBUG] EventBus initialized.
+[DEBUG] GameState initialized.
+[DEBUG] SaveManager initialized.

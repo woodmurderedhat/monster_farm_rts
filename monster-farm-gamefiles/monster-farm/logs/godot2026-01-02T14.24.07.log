@@ -1,0 +1,426 @@
+Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org
+
+[DEBUG] Loading IntegrationTestSuite...
+SCRIPT ERROR: Parse Error: Could not find type "DNACoreResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:79)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:79)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAElementResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:80)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "element" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:80)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNABehaviorResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:81)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:81)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:82)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:82)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:88)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:88)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "DNAValidator" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:95)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "results" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:95)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "DNAValidator" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:98)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "has_errors" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:98)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:108)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "invalid_stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:108)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "DNAValidator" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:112)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "invalid_results" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:112)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "DNAValidator" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:113)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:127)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "assembler" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:127)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNACoreResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:130)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAElementResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:131)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "element" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:131)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNABehaviorResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:132)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:132)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:133)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability1" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:133)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:134)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability2" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:134)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:136)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:136)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:143)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "monster" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:143)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:178)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "assembler" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:178)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNACoreResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:181)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:181)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNABehaviorResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:182)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:182)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:183)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:183)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:185)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:185)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:190)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "monster" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:190)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "health_comp" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:194)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "combat_comp" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:200)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "movement_comp" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:206)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:225)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "assembler" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:225)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNACoreResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:227)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:227)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNABehaviorResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:228)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:228)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:229)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:229)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:231)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:231)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:236)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "monster" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:236)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:282)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "assembler" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:282)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNACoreResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:284)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:284)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAElementResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:285)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "element" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:285)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNABehaviorResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:286)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:286)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:287)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability1" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:287)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:288)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability2" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:288)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:290)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:290)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:296)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "monster" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:296)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:334)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "assembler" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:334)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNACoreResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:336)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "core" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:336)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNABehaviorResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:337)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "behavior" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:337)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Could not find type "DNAAbilityResource" in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:338)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ability" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:338)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterDNAStack" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:340)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "stack" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:340)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "MonsterAssembler" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:345)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "monster" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:345)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "JobBoard" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:429)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "job_board" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:429)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "JobComponent" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:436)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "job_comp" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:436)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "job_id" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:441)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "available" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:442)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "ZoneManager" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:462)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "zm" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:462)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "snapshot" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:469)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "ZoneManager" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:470)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "zm2" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:470)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "state" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:473)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Parse Error: Identifier "StatusEffectComponent" not declared in the current scope.
+   at: GDScript::reload (res://tools/integration_test_suite.gd:530)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+ERROR: Failed to load script "res://tools/integration_test_suite.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:3041)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:10)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _initialize (res://tools/headless_test_runner.gd:16)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/headless_test_runner.gd:16)
+[DEBUG] EventBus initialized.
+[DEBUG] GameState initialized.
+[DEBUG] SaveManager initialized.

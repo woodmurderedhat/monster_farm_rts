@@ -162,3 +162,6 @@ signal monster_buffed(monster: Node, buff_type: String, multiplier: float, durat
 
 ## Emitted when enemy is stunned
 signal enemy_stunned(enemy: Node, duration: float)
+
+func _ready():
+	print("[DEBUG] EventBus initialized.")

@@ -27,12 +27,24 @@ func _connect_to_event_bus() -> void:
 
 ## Load narrative event catalog
 func _load_narrative_catalog() -> void:
-	var narrative_path = "res://data/narratives/"
+	var narrative_path = "res://data/narrative_events/"
 	if not DirAccess.dir_exists_absolute(narrative_path):
 		push_warning("Narrative events directory not found: " + narrative_path)
 		return
-	
-	# TODO: Load .tres files from narratives directory
+
+	var dir := DirAccess.open(narrative_path)
+	if dir == null:
+		push_warning("Failed to open narrative events dir: " + narrative_path)
+		return
+
+	dir.list_dir_begin()
+	var file_name := dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".tres"):
+			var res := load(narrative_path + file_name) as NarrativeEventResource
+			if res and res not in available_narratives:
+				available_narratives.append(res)
+		file_name = dir.get_next()
 
 ## Register a narrative event
 func register_narrative(event: NarrativeEventResource) -> void:

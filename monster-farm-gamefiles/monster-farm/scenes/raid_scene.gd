@@ -1,12 +1,15 @@
 extends Node2D
 ## Raid scene - boss encounters with multiple waves
 
+var PlayerScene := preload("res://entities/player/player.tscn")
+
 @onready var player_team = $PlayerTeam
 @onready var enemy_team = $EnemyTeam
 @onready var boss_health_bar = $BossHealthBar
 @onready var wave_label = $WaveLabel
 @onready var raid_timer = $RaidTimer
 @onready var combat_manager = $CombatManager
+@onready var player_spawn: Node2D = get_node_or_null("PlayerSpawn")
 
 @export var raid_id: String = "raid_goblin_incursion"
 
@@ -24,10 +27,12 @@ var boss_name_label: Label
 var boss_portrait: TextureRect
 var boss_portrait_texture: Texture2D
 var boss_display_name: String = ""
+var player: Player
 
 func _ready():
 	GameState.change_state(GameState.State.RAID_DEFENSE)
 	_assign_systems()
+	_spawn_player()
 	load_raid(raid_id)
 	setup_teams()
 	start_next_wave()
@@ -42,6 +47,21 @@ func _assign_systems():
 	assembler = get_node_or_null("/root/GameWorld/MonsterAssembler")
 	if not assembler:
 		assembler = MonsterAssembler.new()
+
+
+func _spawn_player():
+	if player:
+		return
+	if not PlayerScene:
+		return
+
+	player = PlayerScene.instantiate()
+	player.name = "Player"
+	var spawn_position := Vector2(140, 260)
+	if player_spawn:
+		spawn_position = player_spawn.global_position
+	player.global_position = spawn_position
+	add_child(player)
 
 func load_raid(id: String):
 	var raid_path = "res://data/raids/%s.tres" % id

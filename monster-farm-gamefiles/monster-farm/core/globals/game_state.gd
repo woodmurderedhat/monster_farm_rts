@@ -50,6 +50,7 @@ var playtime: int = 0
 
 
 func _ready() -> void:
+	print("[DEBUG] GameState initialized.")
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	session_start_time = int(Time.get_unix_time_from_system())
 	playtime = 0

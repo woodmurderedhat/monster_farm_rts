@@ -8,10 +8,14 @@ Use the files in the /docs for more information on aspects of the game.
 
 You are assisting development of a **Godot 4.5.x project** that is:
 
+
+https://docs.godotengine.org/en/stable/
+
 * Executed in **CI**
 * Run in **headless mode**
 * Debugged via **VS Code remote attach**
 * Designed for **deterministic, testable systems**
+* Use **geequlim.godot-tools** in VS Code with the Godot path from `.vscode/settings.json` for all Godot tasks
 
 Assume **no editor interaction** is available at runtime.
 
@@ -93,6 +97,7 @@ Design for debugging via:
 * VS Code attach workflows
 * Breakpoints and variable inspection
 * Watch expressions
+* Always review and address the latest log files in the repository workspace at `monster-farm-gamefiles/monster-farm/logs/` (Godot file logging writes to `res://logs/godot.log`) before or after changes to keep runtime issues visible and resolved.
 
 Avoid:
 

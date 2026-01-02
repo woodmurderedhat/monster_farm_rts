@@ -115,7 +115,8 @@ func _ensure_layer(layer_name: String) -> Node2D:
 		return parent.get_node(layer_name) as Node2D
 	var layer := Node2D.new()
 	layer.name = layer_name
-	parent.add_child(layer)
+	# Defer adding children during scene setup to avoid "Parent node is busy" errors
+	parent.call_deferred("add_child", layer)
 	return layer
 
 

@@ -1,0 +1,34 @@
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://placeholder_tileset"]
+
+[ext_resource type="Texture2D" path="res://art/tiles/ground_placeholder.png" id="1"]
+[ext_resource type="Texture2D" path="res://art/tiles/buildable_placeholder.png" id="2"]
+[ext_resource type="Texture2D" path="res://art/tiles/hazard_placeholder.png" id="3"]
+[ext_resource type="Texture2D" path="res://art/tiles/farming_placeholder.png" id="4"]
+[ext_resource type="Texture2D" path="res://art/tiles/water_placeholder.png" id="5"]
+
+[sub_resource type="TileSetAtlasSource" id="1"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(18, 18)
+
+[sub_resource type="TileSetAtlasSource" id="2"]
+texture = ExtResource("2")
+texture_region_size = Vector2i(18, 18)
+
+[sub_resource type="TileSetAtlasSource" id="3"]
+texture = ExtResource("3")
+texture_region_size = Vector2i(18, 18)
+
+[sub_resource type="TileSetAtlasSource" id="4"]
+texture = ExtResource("4")
+texture_region_size = Vector2i(18, 18)
+
+[sub_resource type="TileSetAtlasSource" id="5"]
+texture = ExtResource("5")
+texture_region_size = Vector2i(18, 18)
+
+[resource]
+sources/0 = SubResource("1")
+sources/1 = SubResource("2")
+sources/2 = SubResource("3")
+sources/3 = SubResource("4")
+sources/4 = SubResource("5")

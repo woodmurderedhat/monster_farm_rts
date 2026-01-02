@@ -41,7 +41,7 @@ func unlock_zone(zone_id: String) -> void:
 	if not zone_states.has(zone_id):
 		zone_states[zone_id] = _create_default_zone_state(zone_id)
 	
-	zone_states[zone_id].unlocked = true
+	zone_states[zone_id]["unlocked"] = true
 	zone_unlocked.emit(zone_id)
 	EventBus.zone_unlocked.emit(zone_id)
 
@@ -53,8 +53,8 @@ func enter_zone(zone_id: String) -> bool:
 	
 	current_zone = zone_id
 	
-	if not zone_states[zone_id].visited:
-		zone_states[zone_id].visited = true
+	if not zone_states[zone_id]["visited"]:
+		zone_states[zone_id]["visited"] = true
 		_on_first_visit(zone_id)
 	
 	zone_entered.emit(zone_id)
@@ -82,14 +82,14 @@ func modify_corruption(zone_id: String, amount: float) -> void:
 	if not zone_states.has(zone_id):
 		return
 	
-	zone_states[zone_id].corruption_level = clamp(
-		zone_states[zone_id].corruption_level + amount,
+	zone_states[zone_id]["corruption_level"] = clamp(
+		zone_states[zone_id]["corruption_level"] + amount,
 		0.0,
 		1.0
 	)
 	
 	zone_state_changed.emit(zone_id, zone_states[zone_id])
-	EventBus.zone_corruption_changed.emit(zone_id, zone_states[zone_id].corruption_level)
+	EventBus.zone_corruption_changed.emit(zone_id, zone_states[zone_id]["corruption_level"])
 
 ## Modify DNA availability in a zone (from world events)
 func modify_dna_availability(zone_id: String, modifiers: Dictionary) -> void:
@@ -97,10 +97,10 @@ func modify_dna_availability(zone_id: String, modifiers: Dictionary) -> void:
 		return
 	
 	for dna_type in modifiers:
-		if not zone_states[zone_id].dna_availability.has(dna_type):
-			zone_states[zone_id].dna_availability[dna_type] = 1.0
+		if not zone_states[zone_id]["dna_availability"].has(dna_type):
+			zone_states[zone_id]["dna_availability"][dna_type] = 1.0
 		
-		zone_states[zone_id].dna_availability[dna_type] *= modifiers[dna_type]
+		zone_states[zone_id]["dna_availability"][dna_type] *= modifiers[dna_type]
 	
 	zone_state_changed.emit(zone_id, zone_states[zone_id])
 
@@ -109,7 +109,7 @@ func get_dna_drop_multiplier(dna_id: String) -> float:
 	if current_zone.is_empty() or not zone_states.has(current_zone):
 		return 1.0
 	
-	var availability = zone_states[current_zone].dna_availability
+	var availability = zone_states[current_zone]["dna_availability"]
 	return availability.get(dna_id, 1.0)
 
 ## Check if zone is unlocked
@@ -129,8 +129,8 @@ func record_monster_encounter(zone_id: String, monster_id: String) -> void:
 	if not zone_states.has(zone_id):
 		return
 	
-	if monster_id not in zone_states[zone_id].monsters_encountered:
-		zone_states[zone_id].monsters_encountered.append(monster_id)
+	if monster_id not in zone_states[zone_id]["monsters_encountered"]:
+		zone_states[zone_id]["monsters_encountered"].append(monster_id)
 
 ## Serialize zone states for saving
 func serialize() -> Dictionary:

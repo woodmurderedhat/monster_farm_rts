@@ -116,3 +116,9 @@ func broadcast_combat_event(event_type: String, data: Dictionary) -> void:
 		if combat_ai:
 			combat_ai.on_combat_event(event_type, data)
 
+
+## Set deterministic RNG seed for combat rolls
+func set_rng_seed(seed: int) -> void:
+	var calc = preload("res://systems/combat/damage_calculator.gd")
+	calc.set_seed(seed)
+

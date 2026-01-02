@@ -1,13 +1,20 @@
 extends Node
 ## Damage calculation system following combat-and-ability-spec.md
 
-# Final Damage = (BasePower + (Attack * 0.1) - (Defense / 2)) * ElementMultiplier * CritMultiplier * InstabilityBonus
+# Final Damage = (BasePower + (Attack * 0.1) - (Defense / 2)) * ElementMultiplier * InstabilityBonus
+
+static var rng := RandomNumberGenerator.new()
+
+
+static func set_seed(seed: int) -> void:
+	# Deterministic seed per battle; callers should set before first roll
+	rng.seed = seed
+
 
 static func calculate_damage(attacker: Node2D, defender: Node2D, ability: Dictionary) -> float:
 	var attacker_stats = attacker.get_meta("stat_block", {})
 	var defender_stats = defender.get_meta("stat_block", {})
-	
-	# Get base power from ability
+
 	var base_power = ability.get("base_power", 10.0)
 	var attack = attacker_stats.get("attack", 0.0)
 	var defense = defender_stats.get("defense", defender_stats.get("armor", 0.0))
@@ -16,8 +23,8 @@ static func calculate_damage(attacker: Node2D, defender: Node2D, ability: Dictio
 	var power_scalars: Dictionary = ability.get("power_scalars", {})
 	for stat_name in power_scalars.keys():
 		base_power += attacker_stats.get(stat_name, 0.0) * float(power_scalars[stat_name])
-	
-	# Base calculation
+
+	# Base calculation (no crit here; crit handled by caller)
 	var damage = base_power + (attack * 0.1) - (defense / 2.0)
 
 	# Elemental effectiveness (simple resist dictionary on defender meta)
@@ -27,38 +34,33 @@ static func calculate_damage(attacker: Node2D, defender: Node2D, ability: Dictio
 		var resist: float = clampf(resistances.get(element_type, 0.0), -1.0, 1.0)
 		damage *= (1.0 - resist)
 
-	# Apply critical hit (1.5x damage)
-	if roll_critical(attacker):
-		damage *= 1.5
-
 	# Apply instability bonus (chaotic damage from mutations)
 	var instability = attacker.get_meta("instability", 0.0)
 	if instability > 0:
-		damage *= (1.0 + instability * 0.5)  # Up to 50% bonus at 100% instability
+		damage *= (1.0 + instability * 0.5)
 
-	# Ensure minimum damage of 1
 	return maxf(1.0, damage)
 
 
 static func get_hit_chance(attacker: Node2D, defender: Node2D) -> float:
 	var attacker_stats = attacker.get_meta("stat_block", {})
 	var defender_stats = defender.get_meta("stat_block", {})
-	
+
 	var accuracy = attacker_stats.get("accuracy", 0.85)
 	var evasion = defender_stats.get("evasion", 0.1)
-	
+
 	return clampf(accuracy - evasion, 0.5, 0.95)
 
 
 static func roll_hit(attacker: Node2D, defender: Node2D) -> bool:
 	var hit_chance = get_hit_chance(attacker, defender)
-	return randf() <= hit_chance
+	return rng.randf() <= hit_chance
 
 
 static func roll_critical(attacker: Node2D) -> bool:
 	var attacker_stats = attacker.get_meta("stat_block", {})
 	var crit_chance = attacker_stats.get("crit_chance", 0.1)
-	return randf() <= crit_chance
+	return rng.randf() <= crit_chance
 
 
 static func apply_damage(defender: Node2D, damage: float, attacker: Node2D = null, is_critical: bool = false) -> float:
@@ -71,7 +73,6 @@ static func apply_damage(defender: Node2D, damage: float, attacker: Node2D = nul
 		
 		health_component.take_damage(final_damage, attacker)
 		
-		# Add threat if target has threat component
 		if is_instance_valid(attacker):
 			var threat_comp = defender.get_node_or_null("ThreatComponent") as ThreatComponent
 			if threat_comp:

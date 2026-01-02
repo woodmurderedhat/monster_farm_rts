@@ -1,4 +1,7 @@
-[gd_resource type="Resource" script_class="Resource"]
+
+[gd_resource type="Resource" format=2]
+
+[resource]
 resource_name = "world_event_drought"
 
 id = "world_event_drought"
@@ -7,7 +10,7 @@ description = "Water becomes scarce across the region"
 duration_days = 7
 impact = "negative"
 affected_stats = {
-	"growth_rate": -0.3,
-	"morale": -0.2
+"growth_rate": -0.3,
+"morale": -0.2
 }
 phases = ["drying", "crisis", "recovery"]

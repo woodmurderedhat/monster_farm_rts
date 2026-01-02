@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" path="res://data/dna/monster_dna_stack.gd" id="1_base"]
 [ext_resource type="Resource" path="res://data/dna/cores/core_golem.tres" id="2_core"]
-[ext_resource type="Resource" path="res://data/dna/elements/element_nature.tres" id="3_element"]
+[ext_resource type="Resource" path="res://data/dna/elements/element_earth.tres" id="3_element"]
 [ext_resource type="Resource" path="res://data/dna/behaviors/behavior_defensive.tres" id="4_behavior"]
 [ext_resource type="Resource" path="res://data/dna/abilities/ability_shield.tres" id="5_ability1"]
 [ext_resource type="Resource" path="res://data/dna/abilities/ability_taunt.tres" id="6_ability2"]
-[ext_resource type="Resource" path="res://data/dna/abilities/ability_charge.tres" id="7_ability3"]
 
 [resource]
 script = ExtResource("1_base")
 core = ExtResource("2_core")
 elements = Array[Resource("res://data/dna/dna_element_resource.gd")]([ExtResource("3_element")])
 behavior = ExtResource("4_behavior")
-abilities = Array[Resource("res://data/dna/dna_ability_resource.gd")]([ExtResource("5_ability1"), ExtResource("6_ability2"), ExtResource("7_ability3")])
+abilities = Array[Resource("res://data/dna/dna_ability_resource.gd")]([ExtResource("5_ability1"), ExtResource("6_ability2")])
 mutations = Array[Resource("res://data/dna/dna_mutation_resource.gd")]([])

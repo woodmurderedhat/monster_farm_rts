@@ -20,6 +20,11 @@ var current_job: Dictionary = {}
 ## Whether monster is currently working
 var is_working: bool = false
 
+## Guardrails for automation scheduler
+var job_locked: bool = false
+var min_job_duration: float = 3.0
+var time_in_job: float = 0.0
+
 ## Work progress (0-1)
 var work_progress_value: float = 0.0
 
@@ -37,6 +42,7 @@ func _ready() -> void:
 	entity = get_parent() as Node2D
 	stress_component = entity.get_node_or_null("StressComponent")
 	_initialize_from_meta()
+	set_process(true)
 
 
 ## Initialize from entity metadata
@@ -106,6 +112,11 @@ func add_work_progress(amount: float) -> void:
 	
 	if work_progress_value >= 1.0:
 		complete_job()
+
+
+func _process(delta: float) -> void:
+	if is_working:
+		time_in_job += delta
 
 
 ## Get the affinity for a job type

@@ -33,13 +33,24 @@ func _process(delta: float) -> void:
 
 ## Load all world event resources from data directory
 func _load_event_catalog() -> void:
-	var events_path = "res://data/events/"
+	var events_path = "res://data/world_events/"
 	if not DirAccess.dir_exists_absolute(events_path):
 		push_warning("World events directory not found: " + events_path)
 		return
-	
-	# TODO: Load .tres files from events directory
-	# For now, events must be registered manually or loaded from mod system
+
+	var dir := DirAccess.open(events_path)
+	if dir == null:
+		push_warning("Failed to open world events dir: " + events_path)
+		return
+
+	dir.list_dir_begin()
+	var file_name := dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".tres"):
+			var res := load(events_path + file_name) as WorldEventResource
+			if res and res not in available_events:
+				available_events.append(res)
+		file_name = dir.get_next()
 
 ## Register an event resource
 func register_event(event: WorldEventResource) -> void:
@@ -167,14 +178,32 @@ func _is_event_active(event: WorldEventResource) -> bool:
 
 ## Get current game state for event evaluation
 func _get_game_state() -> Dictionary:
-	if GameState:
-		return {
-			"player_level": GameState.player_level,
-			"zones_visited": GameState.zones_visited,
-			"monsters_owned": GameState.owned_monsters.size(),
-			"current_zone": GameState.current_zone
-		}
-	return {}
+	if not GameState:
+		return {}
+
+	# GameState exposes player progression in `player_state` dict (level under "level").
+	var player_level := 1
+	if GameState.has_method("get"):
+		# safe get: attempt to read property; if missing, fall back to defaults
+		var maybe_level = null
+		# Try direct property first (for backwards compatibility)
+		if GameState.has_meta("player_level"):
+			maybe_level = GameState.get_meta("player_level")
+		else:
+			# Check player_state dictionary
+			if GameState.has("player_state"):
+				var ps = GameState.get("player_state")
+				if ps and typeof(ps) == TYPE_DICTIONARY and ps.has("level"):
+					maybe_level = ps["level"]
+		if maybe_level != null:
+			player_level = maybe_level
+
+	return {
+		"player_level": player_level,
+		"zones_visited": (GameState.zones_visited if GameState.has("zones_visited") else []),
+		"monsters_owned": ((GameState.owned_monsters.size() if GameState.has("owned_monsters") else 0)),
+		"current_zone": (GameState.current_zone if GameState.has("current_zone") else "")
+	}
 
 ## Player resolves an event manually
 func resolve_event_by_player(event: WorldEventResource) -> bool:

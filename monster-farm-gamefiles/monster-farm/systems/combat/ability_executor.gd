@@ -199,7 +199,9 @@ func _execute_target_ability(
 				EventBus.ability_used.emit(user, ability_id, target)
 				return true
 		"poison_spit":
-			# Deal damage and apply poison (TODO: status effects)
+			var status := target.get_node_or_null("StatusEffectComponent") as StatusEffectComponent
+			if status:
+				status.apply_status("poison", ability_data.get("duration", 5.0), ability_data.get("poison_strength", 1.0))
 			_deal_damage(user, target, ability_data)
 			EventBus.ability_used.emit(user, ability_id, target)
 			return true

@@ -1,12 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://12340one"]
+[gd_scene load_steps=5 format=3 uid="uid://12340one"]
 
 [ext_resource type="Script" path="res://scenes/zone_scene.gd" id="1"]
 [ext_resource type="Script" path="res://systems/world/zone_manager.gd" id="2"]
+[ext_resource type="TileSet" path="res://art/tiles/placeholder_tileset.tres" id="3"]
+[ext_resource type="Script" path="res://systems/world/tile_layers.gd" id="4"]
+[ext_resource type="Resource" path="res://data/maps/zone_grassland_layout.tres" id="5"]
 
 [node name="ZoneScene" type="Node2D"]
 script = ExtResource("1")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileLayers" type="Node2D" parent="."]
+script = ExtResource("4")
+paint_demo = false
+map_layout = ExtResource("5")
+
+[node name="TerrainLayer" type="TileMapLayer" parent="TileLayers"]
+tile_set = ExtResource("3")
+
+[node name="BuildableLayer" type="TileMapLayer" parent="TileLayers"]
+tile_set = ExtResource("3")
+
+[node name="NavLayer" type="TileMapLayer" parent="TileLayers"]
+tile_set = ExtResource("3")
+navigation_enabled = true
+
+[node name="HazardLayer" type="TileMapLayer" parent="TileLayers"]
+tile_set = ExtResource("3")
+collision_enabled = false
+
+[node name="FarmingLayer" type="TileMapLayer" parent="TileLayers"]
+tile_set = ExtResource("3")
+collision_enabled = false
 
 [node name="MonsterSpawner" type="Node2D" parent="."]
 

@@ -3,7 +3,7 @@
 extends Node
 class_name AutomationScheduler
 
-const AIScorerScript = preload("res://systems/ai/ai_scorer.gd")
+const AIScorer = preload("res://systems/ai/ai_scorer.gd")
 
 signal job_cycle_started()
 signal job_cycle_completed()
@@ -75,8 +75,8 @@ func _evaluate_monster_job(monster: Node) -> void:
 	var job_board = _get_job_board()
 	if job_board == null:
 		return
-	
-	var available_jobs = job_board.get_available_jobs()
+
+	var available_jobs = job_board.get_available_jobs_for(monster)
 	if available_jobs.is_empty():
 		return
 	

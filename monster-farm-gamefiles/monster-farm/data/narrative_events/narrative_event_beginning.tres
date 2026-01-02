@@ -1,4 +1,7 @@
-[gd_resource type="Resource" script_class="Resource"]
+
+[gd_resource type="Resource" format=2]
+
+[resource]
 resource_name = "narrative_event_beginning"
 
 id = "narrative_event_beginning"
